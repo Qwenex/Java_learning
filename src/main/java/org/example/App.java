@@ -26,6 +26,7 @@ public class App {
      * @return Наименьшее число
      */
     public static Integer minNumber(int x, int y, int z) {
+        printS("Наименьшее число из " + x + ", " + y + ", " + z + " это");
         if ((x < y) && (x < z)) {
             return x;
         } else {
@@ -36,6 +37,7 @@ public class App {
             }
         }
     }
+
    /* Задание 2
     public static Integer leapYear(int x) {
         return x;
@@ -51,23 +53,43 @@ public class App {
      * Задание 4. Определить четверть графика по точке (x,y)
      * @param x Точка x
      * @param y Точка y
+     * @return Ответ в какой четверти точка(x, y)
      */
-   public static void quarterChart(double x, double y) {
-       if (x > 0) {
-           if (y > 0) {
-              printS("Вторая четверть");
+    public static String quarterChart(double x, double y) {
+        printS("Точка (" + x + "; " + y + ") находится в");
+        if (x > 0) {
+            if (y > 0) {
+                return "второй четверти";
+            } else {
+                return "четвертой четверти";
+            }
+        } else {
+            if (y > 0) {
+                return "первой четверти";
+            } else {
+                return "третьей четверти";
+            }
+        }
+    }
 
-           } else {
-               printS("Четвертая четверть");
-           }
-       } else {
-           if (y>0) {
-               printS("Первая четверть");
-           } else {
-               printS("Третья четверть");
-           }
-       }
-   }
+    /**
+     * Задание 5. Существует ли треугольник со сторонами a, b, c
+     * @param a Сторона a
+     * @param b Сторона b
+     * @param c Сторона c
+     * @return Ответ о существовании треугольника
+     */
+    public static String trinagle(double a, double b, double c) {
+        printS("Треугольник со сторонами (" + a + ") (" + b + ") (" + c + ")");
+        if ((a + b >= c) && (a + c >= b) && (b + c >= a)) {
+            return " существует!";
+        } else {
+            return "НЕ существует";
+        }
+    }
+
+
+
 
 
 
@@ -78,9 +100,16 @@ public class App {
 
 
     public static void main(String[] args) {
-    // Задание 1 Наименьшее число
-    print(minNumber(10,43,21));
-    //Задание 4 График
-    //print(quarterChart(5.3,-2.1));
+
+        // Задание 1 Наименьшее число
+        print(minNumber(10, 43, 21));
+
+        //Задание 4 График
+        printS(quarterChart(-5.3, 2.1));
+
+        //Задание 5 Треугольник
+        printS(trinagle(7.3, 2.4, 4.7));
+
+
     }
 }
