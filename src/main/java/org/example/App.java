@@ -88,8 +88,37 @@ public class App {
         }
     }
 
-
-
+    /**
+     * Задание 8*. Расположить 3 числа в порядке возростания.
+     * @param a Первое число
+     * @param b Второе число
+     * @param c Третье число
+     * @return Три числа в порядке возрастания
+     */
+    public static String increase(double a, double b, double c) {
+        printS("Вы ввели числа " + a + ", " + b + ", " + c + " | Числа в порядке возрастания:");
+        if (a>b) {
+            if (a>c) {
+                if (b>c){
+                    return c + ", " + b + ", " + a;
+                } else {
+                    return b + ", " + c + ", " + a;
+                }
+            } else {
+                return b + ", " + a + ", " + a;
+            }
+        } else {
+            if (b>c) {
+                if (a>c) {
+                    return c + ", " + a + ", " + b;
+                } else {
+                    return a + ", " + c + ", " + b;
+                }
+            } else {
+                return a + ", " + b + ", " + c;
+            }
+        }
+    }
 
 
 
@@ -102,13 +131,16 @@ public class App {
     public static void main(String[] args) {
 
         // Задание 1 Наименьшее число
-        print(minNumber(10, 43, 21));
+        print(minNumber(10, -43, 21));
 
         //Задание 4 График
         printS(quarterChart(-5.3, 2.1));
 
         //Задание 5 Треугольник
         printS(trinagle(7.3, 2.4, 4.7));
+
+        //Задание 8 Возрастание
+        printS(increase(43.73,-981.2,3.14));
 
 
     }
