@@ -49,11 +49,12 @@ public class App {
      * @param x Неизвестное число x
      * @return Значение функции
      */
-   public static Double func(double x) {
-       printS("3) Значение функции (4*(x - 5)^2 + 7*x – 10)/(x^4+1) равно");
-       double f = ((4*((x - 5)*(x-5)) + 7*x-10)/(x*x*x*x+1));
-       return f;
-   }
+    public static Double func(double x) {
+        printS("3) Значение функции (4*(x - 5)^2 + 7*x – 10)/(x^4+1) равно");
+        double f;
+        f = (4 * (Math.pow(x-5,2) + 7 * x - 10) / (Math.pow(x,4) + 1));
+        return f;
+    }
 
     /**
      * Задание 4. Определить четверть графика по точке (x,y)
@@ -94,16 +95,23 @@ public class App {
         }
     }
 
-/*
-    public static double func2(double a, double b, double c) {
-
+    /**
+     * Задание 6. Решить квадратное уравнение a*x^2 + b*x + c = 0
+     * @param a a
+     * @param b b
+     * @param c c
+     * @return Корни уровнения x1 и x2
+     */
+    public static String func2(double a, double b, double c) {
+        printS("6) Уравнение " + a + "(x^2)" + b + "x+"+ c +" = 0 Имеет корни:" );
+        double x1;
+        double x2;
+        double d;
+        d = ( Math.pow(b,2) - 4 * a * c);
+        x1 = ((-b + Math.sqrt(d))/2*a);
+        x2 = ((-b - Math.sqrt(d))/2*a);
+        return x1 + " и " + x2;
     }
-*/
-
-
-
-
-
 
     /* 7
     public static String coins(int n) {
@@ -111,13 +119,6 @@ public class App {
 
 
     }
-
-
-
-
-
-
-
 */
 
     /**
@@ -162,13 +163,16 @@ public class App {
         print(minNumber(10, -43, 21));
 
         //Задание 3 Значение функции
-        System.out.println(func(7));
+        System.out.println(func(7.861));
 
         //Задание 4 График
         printS(quarterChart(-5.3, 2.1));
 
         //Задание 5 Треугольник
         printS(trinagle(7.3, 2.4, 4.7));
+
+        //Задание 6 Корни квадратного уравнения
+        printS(func2(3,-5,2));
 
         //Задание 8 Возрастание
         printS(increase(43.73,-981.2,3.14));
