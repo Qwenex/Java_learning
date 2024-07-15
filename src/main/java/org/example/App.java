@@ -38,11 +38,28 @@ public class App {
         }
     }
 
-   /* Задание 2
-    public static Integer leapYear(int x) {
-        return x;
+    /**
+     * Задание 2. Определить, является ли год високосным.
+     * @param x Год
+     * @return Високосность
+     */
+    public static String leapYear(int x) {
+        printS("2) Год " + x + " является");
+            if (x % 4 == 0) {
+                if (x % 100 == 0) {
+                    if (x % 400 == 0) {
+                        return "високосным.";
+                    } else {
+                        return "не високосным.";
+                    }
+                } else {
+                    return "високосным.";
+                }
+            } else {
+                return "не високосным.";
+            }
+
     }
-*/
 
     /**
      * Задание 3. Вывести значение функции (4*(x - 5)^2 + 7*x – 10)/(x^4+1)
@@ -66,15 +83,15 @@ public class App {
         printS("4) Точка (" + x + "; " + y + ") находится в");
         if (x > 0) {
             if (y > 0) {
-                return "второй четверти";
+                return "второй четверти.";
             } else {
-                return "четвертой четверти";
+                return "четвертой четверти.";
             }
         } else {
             if (y > 0) {
-                return "первой четверти";
+                return "первой четверти.";
             } else {
-                return "третьей четверти";
+                return "третьей четверти.";
             }
         }
     }
@@ -86,7 +103,7 @@ public class App {
      * @param c Сторона c
      * @return Ответ о существовании треугольника
      */
-    public static String trinagle(double a, double b, double c) {
+    public static String triangle(double a, double b, double c) {
         printS("5) Треугольник со сторонами (" + a + ") (" + b + ") (" + c + ")");
         if ((a + b >= c) && (a + c >= b) && (b + c >= a)) {
             return " существует!";
@@ -162,6 +179,9 @@ public class App {
         // Задание 1 Наименьшее число
         print(minNumber(10, -43, 21));
 
+        //Задание 2 Високосный год
+        printS(leapYear(2000));
+
         //Задание 3 Значение функции
         System.out.println(func(7.861));
 
@@ -169,7 +189,7 @@ public class App {
         printS(quarterChart(-5.3, 2.1));
 
         //Задание 5 Треугольник
-        printS(trinagle(7.3, 2.4, 4.7));
+        printS(triangle(7.3, 2.4, 4.7));
 
         //Задание 6 Корни квадратного уравнения
         printS(func2(3,-5,2));
