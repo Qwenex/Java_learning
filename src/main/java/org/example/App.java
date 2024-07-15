@@ -26,7 +26,7 @@ public class App {
      * @return Наименьшее число
      */
     public static Integer minNumber(int x, int y, int z) {
-        printS("Наименьшее число из " + x + ", " + y + ", " + z + " это");
+        printS("1) Наименьшее число из " + x + ", " + y + ", " + z + " это");
         if ((x < y) && (x < z)) {
             return x;
         } else {
@@ -43,11 +43,17 @@ public class App {
         return x;
     }
 */
-    /* Задание 3
-   public static Double func(double x, double y) {
-       return y;
+
+    /**
+     * Задание 3. Вывести значение функции (4*(x - 5)^2 + 7*x – 10)/(x^4+1)
+     * @param x Неизвестное число x
+     * @return Значение функции
+     */
+   public static Double func(double x) {
+       printS("3) Значение функции (4*(x - 5)^2 + 7*x – 10)/(x^4+1) равно");
+       double f = ((4*((x - 5)*(x-5)) + 7*x-10)/(x*x*x*x+1));
+       return f;
    }
- */
 
     /**
      * Задание 4. Определить четверть графика по точке (x,y)
@@ -56,7 +62,7 @@ public class App {
      * @return Ответ в какой четверти точка(x, y)
      */
     public static String quarterChart(double x, double y) {
-        printS("Точка (" + x + "; " + y + ") находится в");
+        printS("4) Точка (" + x + "; " + y + ") находится в");
         if (x > 0) {
             if (y > 0) {
                 return "второй четверти";
@@ -73,20 +79,46 @@ public class App {
     }
 
     /**
-     * Задание 5. Существует ли треугольник со сторонами a, b, c
+     * Задание 5. Существует ли треугольник со сторонами a, b, c ?
      * @param a Сторона a
      * @param b Сторона b
      * @param c Сторона c
      * @return Ответ о существовании треугольника
      */
     public static String trinagle(double a, double b, double c) {
-        printS("Треугольник со сторонами (" + a + ") (" + b + ") (" + c + ")");
+        printS("5) Треугольник со сторонами (" + a + ") (" + b + ") (" + c + ")");
         if ((a + b >= c) && (a + c >= b) && (b + c >= a)) {
             return " существует!";
         } else {
-            return "НЕ существует";
+            return "НЕ существует!";
         }
     }
+
+/*
+    public static double func2(double a, double b, double c) {
+
+    }
+*/
+
+
+
+
+
+
+    /* 7
+    public static String coins(int n) {
+        printS("У меня в кармане");
+
+
+    }
+
+
+
+
+
+
+
+*/
 
     /**
      * Задание 8*. Расположить 3 числа в порядке возростания.
@@ -96,7 +128,7 @@ public class App {
      * @return Три числа в порядке возрастания
      */
     public static String increase(double a, double b, double c) {
-        printS("Вы ввели числа " + a + ", " + b + ", " + c + " | Числа в порядке возрастания:");
+        printS("8) Вы ввели числа " + a + ", " + b + ", " + c + " | Числа в порядке возрастания:");
         if (a>b) {
             if (a>c) {
                 if (b>c){
@@ -120,18 +152,17 @@ public class App {
         }
     }
 
-
-
-
-
-
-
-
-
+    /**
+     * Основной блок выполнения программы task 3
+     * @param args Аргументы
+     */
     public static void main(String[] args) {
 
         // Задание 1 Наименьшее число
         print(minNumber(10, -43, 21));
+
+        //Задание 3 Значение функции
+        System.out.println(func(7));
 
         //Задание 4 График
         printS(quarterChart(-5.3, 2.1));
@@ -141,7 +172,6 @@ public class App {
 
         //Задание 8 Возрастание
         printS(increase(43.73,-981.2,3.14));
-
 
     }
 }
