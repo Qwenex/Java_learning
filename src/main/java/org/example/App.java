@@ -3,10 +3,10 @@ package org.example;
 public class App {
 
     /**
-     * Быстрый вывод числа
+     * Быстрый вывод числа double
      * @param number Число которое нужно вывести
      */
-    public static void print(Integer number) {
+    public static void print(double number) {
         System.out.println(number);
     }
 
@@ -14,7 +14,7 @@ public class App {
      * Быстрый вывод строки
      * @param symbol Строка которую нужно вывести
      */
-    public static void printS(String symbol) {
+    public static void print(String symbol) {
         System.out.println(symbol);
     }
 
@@ -25,8 +25,8 @@ public class App {
      * @param z Третье число
      * @return Наименьшее число
      */
-    public static Integer minNumber(int x, int y, int z) {
-        printS("1) Наименьшее число из " + x + ", " + y + ", " + z + " это");
+    public static double minNumber(double x, double y, double z) {
+        print("1) Наименьшее число из " + x + ", " + y + ", " + z + " это");
         if ((x < y) && (x < z)) {
             return x;
         } else {
@@ -40,24 +40,12 @@ public class App {
 
     /**
      * Задание 2. Определить, является ли год високосным.
-     * @param x Год
+     * @param y Год
      * @return Високосность
      */
-    public static String leapYear(int x) {
-        printS("2) Год " + x + " является");
-        if (x % 4 == 0) {
-            if (x % 100 == 0) {
-                if (x % 400 == 0) {
-                    return "високосным.";
-                } else {
-                    return "не високосным.";
-                }
-            } else {
-                return "високосным.";
-            }
-        } else {
-            return "не високосным.";
-        }
+    public static String leapYear(int y) {
+        print("2) Год " + y + " является");
+        return y % 4 == 0 && (y % 100 != 0 || y % 400 == 0) ? "високосным" : "не високосным";
     }
 
     /**
@@ -66,10 +54,8 @@ public class App {
      * @return Значение функции
      */
     public static Double func(double x) {
-        printS("3) Значение функции (4*(x - 5)^2 + 7*x – 10)/(x^4+1) равно");
-        double f;
-        f = (4 * (Math.pow(x - 5, 2) + 7 * x - 10) / (Math.pow(x, 4) + 1));
-        return f;
+        print("3) Значение функции (4*(x - 5)^2 + 7*x – 10)/(x^4+1) равно");
+        return (4 * (Math.pow(x - 5, 2) + 7 * x - 10) / (Math.pow(x, 4) + 1));
     }
 
     /**
@@ -79,16 +65,16 @@ public class App {
      * @return Ответ в какой четверти точка(x, y)
      */
     public static String quarterChart(double x, double y) {
-        printS("4) Точка (" + x + "; " + y + ") находится в");
+        print("4) Точка (" + x + "; " + y + ") находится в");
         if (x > 0) {
             if (y > 0) {
-                return "второй четверти.";
+                return "первой четверти.";
             } else {
                 return "четвертой четверти.";
             }
         } else {
             if (y > 0) {
-                return "первой четверти.";
+                return "второй четверти.";
             } else {
                 return "третьей четверти.";
             }
@@ -103,12 +89,8 @@ public class App {
      * @return Ответ о существовании треугольника
      */
     public static String triangle(double a, double b, double c) {
-        printS("5) Треугольник со сторонами (" + a + ") (" + b + ") (" + c + ")");
-        if ((a + b >= c) && (a + c >= b) && (b + c >= a)) {
-            return " существует!";
-        } else {
-            return "НЕ существует!";
-        }
+        print("5) Треугольник со сторонами (" + a + ") (" + b + ") (" + c + ")");
+        return  a + b >= c && a + c >= b && b + c >= a ? " существует!" : "НЕ существует!";
     }
 
     /**
@@ -118,15 +100,12 @@ public class App {
      * @param c Число c
      * @return Корни уровнения x1 и x2
      */
-    public static String func2(double a, double b, double c) {
-        printS("6) Уравнение " + a + "(x^2)" + b + "x+" + c + " = 0 Имеет корни:");
-        double x1;
-        double x2;
-        double d;
-        d = (Math.pow(b, 2) - 4 * a * c);
-        x1 = ((-b + Math.sqrt(d)) / 2 * a);
-        x2 = ((-b - Math.sqrt(d)) / 2 * a);
-        return x1 + " и " + x2;
+    public static String quadraticEquation(double a, double b, double c) {
+        print("6) Уравнение " + a + "(x^2)" + b + "x+" + c + " = 0 Имеет корни:");
+        double d = (Math.pow(b, 2) - 4 * a * c);
+        double x1 = ((-b + Math.sqrt(d)) / 2 * a);
+        double x2 = ((-b - Math.sqrt(d)) / 2 * a);
+        return d == 0 ? "Один корень: " + x1 : x1 + " и " + x2;
     }
 
     /**
@@ -135,7 +114,7 @@ public class App {
      * @return Окончание фразы
      */
     public static String coins(int n) {
-        printS("7) У меня в кармане");
+        print("7) У меня в кармане");
         int y = (n % 10);
         if (y == 1 && n != 11) {
             return n + " монета";
@@ -156,7 +135,7 @@ public class App {
      * @return Три числа в порядке возрастания
      */
     public static String increase(double a, double b, double c) {
-        printS("8) Вы ввели числа " + a + ", " + b + ", " + c + " | Числа в порядке возрастания:");
+        print("8) Вы ввели числа " + a + ", " + b + ", " + c + " | Числа в порядке возрастания:");
         if (a > b) {
             if (a > c) {
                 if (b > c) {
@@ -187,28 +166,28 @@ public class App {
     public static void main(String[] args) {
 
         // Задание 1 Наименьшее число
-        print(minNumber(10, -43, 21));
+        print(minNumber(10.56, -43.2, 0.5634));
 
         //Задание 2 Високосный год
-        printS(leapYear(2000));
+        print(leapYear(2000));
 
         //Задание 3 Значение функции
-        System.out.println(func(7.861));
+        print(func(7.861));
 
         //Задание 4 График
-        printS(quarterChart(-5.3, 2.1));
+        print(quarterChart(-5.3, 2.1));
 
         //Задание 5 Треугольник
-        printS(triangle(7.3, 2.4, 4.7));
+        print(triangle(7.3, 2.4, 4.7));
 
         //Задание 6 Корни квадратного уравнения
-        printS(func2(3, -5, 2));
+        print(quadraticEquation(3, -5, 2));
 
         //Задание 7 Монеты
-        printS(coins(13));
+        print(coins(13));
 
         //Задание 8 Возрастание
-        printS(increase(43.73, -981.2, 3.14));
+        print(increase(43.73, -981.2, 3.14));
 
     }
 }
