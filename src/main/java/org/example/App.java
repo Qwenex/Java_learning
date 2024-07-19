@@ -26,16 +26,8 @@ public class App {
      * @return Наименьшее число
      */
     public static double minNumber(double x, double y, double z) {
-        print("1) Наименьшее число из " + x + ", " + y + ", " + z + " это");
-        if ((x < y) && (x < z)) {
-            return x;
-        } else {
-            if (y < z) {
-                return y;
-            } else {
-                return z;
-            }
-        }
+        print(String.format("1) Наименьшее число из %s, %s, %s это ", x, y, z));
+        return (x < y) && (x < z) ? x : y < z ? y : z;
     }
 
     /**
@@ -44,8 +36,8 @@ public class App {
      * @return Високосность
      */
     public static String leapYear(int y) {
-        print("2) Год " + y + " является");
-        return y % 4 == 0 && (y % 100 != 0 || y % 400 == 0) ? "високосным" : "не високосным";
+        print(String.format("2) Год %s является ", y));
+        return (y % 4 == 0 && (y % 100 != 0 || y % 400 == 0) ? "високосным" : "не високосным");
     }
 
     /**
@@ -54,7 +46,7 @@ public class App {
      * @return Значение функции
      */
     public static Double func(double x) {
-        print("3) Значение функции (4*(x - 5)^2 + 7*x – 10)/(x^4+1) равно");
+        print(String.format("3) Значение функции (4*(x - 5)^2 + 7*x – 10)/(x^4+1) при x = %s равно", x));
         return (4 * (Math.pow(x - 5, 2) + 7 * x - 10) / (Math.pow(x, 4) + 1));
     }
 
@@ -65,7 +57,7 @@ public class App {
      * @return Ответ в какой четверти точка(x, y)
      */
     public static String quarterChart(double x, double y) {
-        print("4) Точка (" + x + "; " + y + ") находится в");
+        print(String.format("4) Точка (%s; %s) находится в", x, y));
         if (x > 0) {
             if (y > 0) {
                 return "первой четверти.";
@@ -89,8 +81,8 @@ public class App {
      * @return Ответ о существовании треугольника
      */
     public static String triangle(double a, double b, double c) {
-        print("5) Треугольник со сторонами (" + a + ") (" + b + ") (" + c + ")");
-        return  a + b >= c && a + c >= b && b + c >= a ? " существует!" : "НЕ существует!";
+       print(String.format("5) Треугольник со сторонами %s; %s; %s; ", a, b, c));
+        return (a + b >= c && a + c >= b && b + c >= a ? " существует!" : "НЕ существует!");
     }
 
     /**
@@ -100,8 +92,8 @@ public class App {
      * @param c Число c
      * @return Корни уровнения x1 и x2
      */
-    public static String quadraticEquation(double a, double b, double c) {
-        print("6) Уравнение " + a + "(x^2)" + b + "x+" + c + " = 0 Имеет корни:");
+    public static String quadraticEquation(int a, int b, int c) {
+        print(String.format("6) Уравнение %s(x^2)+ %sx+ %s = 0 Имеет корни:", a, b, c));
         double d = (Math.pow(b, 2) - 4 * a * c);
         double x1 = ((-b + Math.sqrt(d)) / 2 * a);
         double x2 = ((-b - Math.sqrt(d)) / 2 * a);
@@ -119,7 +111,7 @@ public class App {
         if (y == 1 && n != 11) {
             return n + " монета";
         } else {
-            if ((y>= 2 && y <= 4)  && !(n>=12 && n<= 14)) {
+            if ((y >= 2 && y <= 4) && !(n >= 12 && n <= 14)) {
                 return n + " монеты";
             } else {
                 return n + " монет";
@@ -135,28 +127,24 @@ public class App {
      * @return Три числа в порядке возрастания
      */
     public static String increase(double a, double b, double c) {
-        print("8) Вы ввели числа " + a + ", " + b + ", " + c + " | Числа в порядке возрастания:");
+      print(String.format("8) Вы ввели числа %s, %s, %s | Числа в порядке возрастания:", a, b, c));
+        double x;
         if (a > b) {
-            if (a > c) {
-                if (b > c) {
-                    return c + ", " + b + ", " + a;
-                } else {
-                    return b + ", " + c + ", " + a;
-                }
-            } else {
-                return b + ", " + a + ", " + a;
-            }
-        } else {
-            if (b > c) {
-                if (a > c) {
-                    return c + ", " + a + ", " + b;
-                } else {
-                    return a + ", " + c + ", " + b;
-                }
-            } else {
-                return a + ", " + b + ", " + c;
-            }
+            x = a;
+            a = b;
+            b = x;
         }
+        if (b > c) {
+            x = b;
+            b = c;
+            c = x;
+        }
+        if (a > b) {
+            x = a;
+            a = b;
+            b = x;
+        }
+        return String.format("%s; %s; %s;", a, b, c);
     }
 
     /**
@@ -166,7 +154,7 @@ public class App {
     public static void main(String[] args) {
 
         // Задание 1 Наименьшее число
-        print(minNumber(10.56, -43.2, 0.5634));
+        print(minNumber(10.96, -43.24, 0.56));
 
         //Задание 2 Високосный год
         print(leapYear(2000));
@@ -187,7 +175,7 @@ public class App {
         print(coins(13));
 
         //Задание 8 Возрастание
-        print(increase(43.73, -981.2, 3.14));
+        print(increase(7.16, -5.98, 3.14));
 
     }
 }
