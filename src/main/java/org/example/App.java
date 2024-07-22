@@ -38,21 +38,6 @@ public class App {
      * @return Отсортированный массив
      */
     public static int[] bubbleSort(int[] array) {
-        for (int i = 1; i > 0; i--) {
-            for (int j = 0; j < array.length - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    int x = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = x;
-                }
-                i++;
-            }
-        }
-        return array;
-    }
-
-    // v2
-    public static int[] bubbleSort2(int[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
                 if (array[i] < array[j]) {
@@ -93,6 +78,32 @@ public class App {
         return (str += ")");
     }
 
+    /**
+     * Задание 5. “Удалить” первый элемент массива
+     * @param array Искомый массив
+     * @return Массив с удаленым 1-ым элементом
+     */
+    public static int[] deleteInArray(int[] array) {
+        int[] array2 = new int[array.length - 1];
+        for (int i = 1; i < array.length; i++) {
+            array2[i - 1] = array[i];
+        }
+        return array2;
+    }
+
+    /**
+     * Задание 6. Вывести строку задом наоборот
+     * @param str Строка, которую нужно перевернуть (пр."Привет")
+     * @return Перевернутая строка (пр."тевирП")
+     */
+    public static String reverseString(String str) {
+        String rts = "";
+        for (int i = 0; i < str.length(); i++) {
+            rts = str.charAt(i) + rts;
+        }
+        return rts;
+    }
+
     public static void main(String[] args) {
 
         int[] testArray = new int[]{4, 2, 1, 6, 3, 5, 10, 8, 9, 7};
@@ -100,8 +111,8 @@ public class App {
         // Задание 1. Рандомный массив
         printArray(randomArray(6, 3, 9));
 
-        // Задание 2. Bubble Sort
-        printArray(bubbleSort2(testArray));
+        // Задание 2. Сортировка Bubble Sort
+        printArray(bubbleSort(testArray));
 
         // Задание 3. Сумма всех элементов в массиве
         System.out.println(sumInArray(testArray));
@@ -109,6 +120,11 @@ public class App {
         // Задание 4. Четные элементы массива
         System.out.println(evenInArray(testArray));
 
+        // Задание 5. “Удалить” первый элемент массива
+        printArray(deleteInArray(testArray));
+
+        // Задание 6. Вывести строку задом наоборот
+        System.out.print(reverseString("4321 dcbA"));
 
     }
 }
