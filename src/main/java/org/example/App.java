@@ -18,16 +18,16 @@ public class App {
 
     /**
      * Задание 1. Рандомный массив с заданным min и max значением.
-     * @param l Длина массива
-     * @param a Минимальное значение массива
-     * @param b Максимальное значение массива
+     * @param l   Длина массива
+     * @param min Минимальное значение массива
+     * @param max Максимальное значение массива
      * @return Рандомный массив с заданной длиной, min и max значением
      */
-    public static int[] randomArray(int l, int a, int b) {
+    public static int[] randomArray(int l, int min, int max) {
         int[] array = new int[l];
         Random rnd = new Random();
         for (int i = 0; i < array.length; i++) {
-            array[i] = rnd.nextInt(b - a + 1) + a;
+            array[i] = rnd.nextInt(max - min + 1) + min;
         }
         return array;
     }
@@ -55,12 +55,12 @@ public class App {
      * @param array Массив в котором необходимо сложить элементы.
      * @return Сумма всех элементов
      */
-    public static int sumInArray(int[] array) {
-        int x = 0;
+    public static int sumElementArray(int[] array) {
+        int sum = 0;
         for (int i = 0; i < array.length; i++) {
-            x += array[i];
+            sum += array[i];
         }
-        return x;
+        return sum;
     }
 
     /**
@@ -68,14 +68,14 @@ public class App {
      * @param array Массив в котором необходимо вывести все четные числа
      * @return Четные числа массива
      */
-    public static String evenInArray(int[] array) {
-        String str = "( ";
+    public static String evenElementArray(int[] array) {
+        String result = "( ";
         for (int i = 0; i < array.length; i++) {
             if (array[i] % 2 == 0) {
-                str += array[i] + " ";
+                result += array[i] + " ";
             }
         }
-        return (str += ")");
+        return (result += ")");
     }
 
     /**
@@ -83,12 +83,12 @@ public class App {
      * @param array Искомый массив
      * @return Массив с удаленым 1-ым элементом
      */
-    public static int[] deleteInArray(int[] array) {
-        int[] array2 = new int[array.length - 1];
-        for (int i = 1; i < array.length; i++) {
-            array2[i - 1] = array[i];
+    public static int[] deleteFirstArray(int[] array) {
+        int[] newArray = new int[array.length - 1];
+        for (int i = 0; i < array.length-1; i++) {
+            newArray[i] = array[i+1];
         }
-        return array2;
+        return newArray;
     }
 
     /**
@@ -97,34 +97,67 @@ public class App {
      * @return Перевернутая строка (пр."тевирП")
      */
     public static String reverseString(String str) {
-        String rts = "";
+        String result = "";
         for (int i = 0; i < str.length(); i++) {
-            rts = str.charAt(i) + rts;
+            result = str.charAt(i) + result;
         }
-        return rts;
+        return result;
+    }
+
+    /**
+     * Задание 7* “Удалить” элемент из массива по индексу
+     * @param array Искомый массив
+     * @param deleteIndex Индекс массива, который нужно удалить
+     * @return Массив с удаленным элементом
+     */
+    public static int[] deleteElementArray(int[] array, int deleteIndex) {
+        int[] newArray = new int[array.length - 1];
+        for (int i = 0; i < array.length-1; i++) {
+            newArray[i] = i < deleteIndex ? array[i] : array[i+1];
+        }
+        return newArray;
+    }
+
+    /**
+     * Задание 9* Последовательность 1+2+3+…+n. Определить кратна ли сумма ряда числу k,
+     * Написать функцию в которую передают только число k, и получают true либо false
+     * @param k Запрашиваемое число.
+     * @return Ответ об существовании числа.
+     */
+    public static boolean sequenceSumRow(int k){
+        return true;
     }
 
     public static void main(String[] args) {
 
-        int[] testArray = new int[]{4, 2, 1, 6, 3, 5, 10, 8, 9, 7};
-
         // Задание 1. Рандомный массив
-        printArray(randomArray(6, 3, 9));
+        System.out.println("1) Рандомный массив");
+        int[] rndArray = randomArray(6, 3, 9);
+        printArray(rndArray);
 
         // Задание 2. Сортировка Bubble Sort
-        printArray(bubbleSort(testArray));
+        System.out.println("2) Bubble Sort");
+        printArray(bubbleSort(rndArray));
 
         // Задание 3. Сумма всех элементов в массиве
-        System.out.println(sumInArray(testArray));
+        System.out.println("3) Сумма \n" + sumElementArray(rndArray));
 
         // Задание 4. Четные элементы массива
-        System.out.println(evenInArray(testArray));
+        System.out.println("4) Четные числа \n" + evenElementArray(rndArray));
 
         // Задание 5. “Удалить” первый элемент массива
-        printArray(deleteInArray(testArray));
+        System.out.println("5) Удаление 1-го элемента");
+        printArray(deleteFirstArray(rndArray));
 
         // Задание 6. Вывести строку задом наоборот
-        System.out.print(reverseString("4321 dcbA"));
+        System.out.println("6) Реверс строки \n" + reverseString("4321 dcbA"));
+
+        // Задание 7*. "Удалить” элемент из массива
+        System.out.println("7*) Удаление элмента из массива");
+        printArray(deleteElementArray(rndArray,5));
+
+        //Задание 9* Кратность ряда к числу k
+        System.out.println("9*) Последовательность " + sequenceSumRow(5));
 
     }
 }
