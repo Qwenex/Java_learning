@@ -1,21 +1,26 @@
 package org.example;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class App {
 
+    public static Logger logger = LoggerFactory.getLogger(App.class);
+
     /**
-     * Быстрый вывод числа double
+     * Логгер числа double
      * @param number Число которое нужно вывести
      */
     public static void print(double number) {
-        System.out.println(number);
+        logger.info(String.valueOf(number));
     }
 
     /**
-     * Быстрый вывод строки
+     * Логгер строки
      * @param symbol Строка которую нужно вывести
      */
     public static void print(String symbol) {
-        System.out.println(symbol);
+        logger.info(symbol);
     }
 
     /**
