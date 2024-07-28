@@ -1,8 +1,20 @@
 package org.example;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.Random;
 
 public class App {
+
+    public static Logger logger = LoggerFactory.getLogger(App.class);
+
+    /**
+     * Логгер строки
+     * @param symbol Строка которую нужно вывести
+     */
+    public static void print(String symbol) {
+        logger.info(symbol);
+    }
 
     /**
      * Вывод значений массива
@@ -13,7 +25,7 @@ public class App {
         for (int i = 0; i < arrayName.length; i++) {
             str += arrayName[i] + " ";
         }
-        System.out.println(str + ")");
+        print(str + ")");
     }
 
     /**
@@ -131,33 +143,33 @@ public class App {
     public static void main(String[] args) {
 
         // Задание 1. Рандомный массив
-        System.out.println("1) Рандомный массив");
+        print("1) Рандомный массив");
         int[] rndArray = randomArray(6, 3, 9);
         printArray(rndArray);
 
         // Задание 2. Сортировка Bubble Sort
-        System.out.println("2) Bubble Sort");
+        print("2) Bubble Sort");
         printArray(bubbleSort(rndArray));
 
         // Задание 3. Сумма всех элементов в массиве
-        System.out.println("3) Сумма \n" + sumElementArray(rndArray));
+        print("3) Сумма " + sumElementArray(rndArray));
 
         // Задание 4. Четные элементы массива
-        System.out.println("4) Четные числа \n" + evenElementArray(rndArray));
+        print("4) Четные числа " + evenElementArray(rndArray));
 
         // Задание 5. “Удалить” первый элемент массива
-        System.out.println("5) Удаление 1-го элемента");
+        print("5) Удаление 1-го элемента");
         printArray(deleteFirstArray(rndArray));
 
         // Задание 6. Вывести строку задом наоборот
-        System.out.println("6) Реверс строки \n" + reverseString("4321 dcbA"));
+        print("6) Реверс строки " + reverseString("4321 dcbA"));
 
         // Задание 7*. "Удалить” элемент из массива
-        System.out.println("7*) Удаление элмента из массива");
-        printArray(deleteElementArray(rndArray,5));
+        print("7*) Удаление элмента из массива");
+        printArray(deleteElementArray(rndArray, 5));
 
         //Задание 9* Кратность ряда к числу k
-        System.out.println("9*) Последовательность " + sequenceSumRow(5));
+        print("9*) Последовательность " + sequenceSumRow(5));
 
     }
 }
