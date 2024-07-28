@@ -1,0 +1,5 @@
+2024-07-28 23:34:33.029 [main] INFO  org.example.App - Info log message
+2024-07-28 23:34:33.031 [main] WARN  org.example.App - Warn log message
+2024-07-28 23:34:33.031 [main] ERROR org.example.App - Error log message
+2024-07-28 23:34:33.031 [main] DEBUG org.example.App - Debug log message
+2024-07-28 23:34:33.031 [main] TRACE org.example.App - Trace log message
