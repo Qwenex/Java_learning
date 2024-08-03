@@ -1,17 +1,19 @@
 package identity;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class Person {
 
-    private static String name;
-    private static String lastName;
-    private static String surname;
-    private String birthDay;
+    private String name;
+    private String lastName;
+    private String surname;
+    private LocalDate birthDay;
     private String sex;
     private String citizenship;
     private Integer height;
     private Integer weight;
 
-    // Getters
     public String getName() {
         return name;
     }
@@ -24,7 +26,7 @@ public class Person {
         return surname;
     }
 
-    public String getBirthDay() {
+    public LocalDate getBirthDay() {
         return birthDay;
     }
 
@@ -44,9 +46,20 @@ public class Person {
         return weight;
     }
 
-    //Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public void setBirthDay(LocalDate birthDay) {
+        this.birthDay = birthDay;
     }
 
     public void setSex(String sex) {
@@ -62,7 +75,7 @@ public class Person {
     }
 
     public void setHeight(Integer height) {
-        if (height > 40 && height < 300) {
+        if (height > 30 && height < 300) {
             this.height = height;
         } else {
             this.height = 0;
@@ -76,15 +89,35 @@ public class Person {
             this.weight = 0;
         }
     }
-    //Конструктор
-    public Person(String lastName, String name, String birthDay) {
-        this.lastName = lastName;
-        this.name = name;
-        this.birthDay = birthDay;
+
+    public Person(String lastName, String name, LocalDate birthDay) {
+        this.setLastName(lastName);
+        this.setName(name);
+        this.setBirthDay(birthDay);
     }
 
-    //Методы
-    public static String fullName() {
+    /**
+     * Получить ФИО человека
+     * @return ФИО
+     */
+    public String fullName() {
         return String.format("%s %s %s", lastName, name, surname);
+    }
+
+    /**
+     * Получить возраст человека
+     * @return Возраст
+     */
+    public Integer getAge() {
+        Period period = Period.between(this.birthDay, LocalDate.now());
+        return period.getYears();
+    }
+
+    /**
+     * Является ли человек совершеннотеним?
+     * @return Является ли человек совершеннотеним
+     */
+    public Boolean isAdult() {
+        return getAge() >= 18;
     }
 }
