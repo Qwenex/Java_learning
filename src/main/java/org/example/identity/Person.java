@@ -14,6 +14,12 @@ public class Person {
     private Integer height;
     private Integer weight;
 
+    public Person(String lastName, String name, LocalDate birthDay) {
+        this.setLastName(lastName);
+        this.setName(name);
+        this.setBirthDay(birthDay);
+    }
+
     public String getName() {
         return name;
     }
@@ -88,12 +94,6 @@ public class Person {
         } else {
             this.weight = 0;
         }
-    }
-
-    public Person(String lastName, String name, LocalDate birthDay) {
-        this.setLastName(lastName);
-        this.setName(name);
-        this.setBirthDay(birthDay);
     }
 
     /**

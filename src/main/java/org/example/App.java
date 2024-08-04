@@ -4,7 +4,6 @@ import org.example.identity.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.example.simpleMath.Calc;
-
 import java.time.LocalDate;
 
 public class App {
@@ -27,7 +26,6 @@ public class App {
         logger.info("Вес: {} Кг", person.getWeight().toString());
         logger.info("Возраст: {} Лет", person.getAge());
         logger.info("Совершеннолетие: {}", person.isAdult());
-        System.out.println();
         logger.info(String.valueOf(Calc.plus(5.3, 2.5)));
         logger.info(String.valueOf(Calc.minus(5.3, 2.5)));
         logger.info(String.valueOf(Calc.multiplication(5.3, 2.5)));
