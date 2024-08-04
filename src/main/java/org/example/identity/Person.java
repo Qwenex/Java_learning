@@ -1,4 +1,4 @@
-package identity;
+package org.example.identity;
 
 import java.time.LocalDate;
 import java.time.Period;
