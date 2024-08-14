@@ -1,9 +1,26 @@
 package org.example.shapes;
 
-public class Square extends Shape{
+/**
+ * Фигура квадрат
+ */
+public class Square extends Shape {
 
+    public Double a;
+
+    /**
+     * @param a Сторона квадрата a
+     */
+    public Square(Double a) {
+        name = "квадрат";
+        this.a = a;
+    }
+
+    /**
+     * Нахождение площади фигуры
+     * @return площадь фигуры
+     */
     @Override
-    public double squareShape(double a) {
+    public Double squareShape() {
         return a * a;
     }
 }

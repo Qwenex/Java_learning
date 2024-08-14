@@ -1,9 +1,26 @@
 package org.example.shapes;
 
-public class Circle extends Shape{
+/**
+ * Фигура круг
+ */
+public class Circle extends Shape {
 
+    public Double r;
+
+    /**
+     * @param r Радиус круга
+     */
+    public Circle(Double r) {
+        name = "круг";
+        this.r = r;
+    }
+
+    /**
+     * Нахождение площади фигуры
+     * @return площадь фигуры
+     */
     @Override
-    public double squareShape(double r) {
+    public Double squareShape() {
         return 3.14 * r * r;
     }
 }
