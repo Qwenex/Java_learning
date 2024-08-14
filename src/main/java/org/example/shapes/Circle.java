@@ -11,7 +11,7 @@ public class Circle extends Shape {
      * @param r Радиус круга
      */
     public Circle(Double r) {
-        name = "круг";
+        super("круг");
         this.r = r;
     }
 

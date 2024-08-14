@@ -11,8 +11,7 @@ public class RightTriangle extends Square {
      * @param a Сторона треугольника a
      */
     public RightTriangle(Double a) {
-        super(a);
-        name = "прямоугольный треугольник";
+        super(a,"прямоугольный треугольник");
     }
 
     /**

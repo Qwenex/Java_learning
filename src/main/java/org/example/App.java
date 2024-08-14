@@ -18,7 +18,7 @@ public class App {
         };
 
         for (int i = 0; i < shapes.length; i++) {
-            logger.info("Площадь фигуры {}, равна {}", shapes[i].name, shapes[i].squareShape());
+            logger.info("Площадь фигуры {}, равна {}", shapes[i].getName(), shapes[i].squareShape());
         }
     }
 }

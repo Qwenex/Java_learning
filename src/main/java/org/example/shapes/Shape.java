@@ -5,7 +5,15 @@ package org.example.shapes;
  */
 public class Shape {
 
-    public String name = "";
+    private final String name;
+
+    public Shape(String name){
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     /**
      * Нахождение площади фигуры

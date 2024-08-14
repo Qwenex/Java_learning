@@ -12,8 +12,7 @@ public class Rectangle extends Square {
      * @param b Сторона прямоугольника b
      */
     public Rectangle(Double a, Double b) {
-        super(a);
-        name = "прямоугольник";
+        super(a,"прямоугольник");
         this.b = b;
     }
 

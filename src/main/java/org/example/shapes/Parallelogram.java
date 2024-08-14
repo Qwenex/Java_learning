@@ -12,8 +12,7 @@ public class Parallelogram extends Square {
      * @param h Высота параллелограмма h
      */
     public Parallelogram(Double a, Double h) {
-        super(a);
-        name = "параллелограмм";
+        super(a,"параллелограмм");
         this.h = h;
     }
 

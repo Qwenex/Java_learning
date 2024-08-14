@@ -11,7 +11,12 @@ public class Square extends Shape {
      * @param a Сторона квадрата a
      */
     public Square(Double a) {
-        name = "квадрат";
+        super("квадрат");
+        this.a = a;
+    }
+
+    protected Square(Double a, String name) {
+        super(name);
         this.a = a;
     }
 
