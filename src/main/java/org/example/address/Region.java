@@ -5,34 +5,23 @@ package org.example.address;
  */
 public class Region extends Country {
 
-    private final String regionRussia = "Moscow Region";
-    private final String regionUsa = "District of Columbia";
-    private final String regionFrance = "Region Ile-de-France";
+    private final String region;
 
-    public String getRegionRussia() {
-        return regionRussia;
+    public String getRegion() {
+        return region;
     }
 
-    public String getRegionUsa() {
-        return regionUsa;
+    public Region(String nameCountry, String nameRegion){
+        super(nameCountry);
+        this.region = nameRegion;
     }
 
-    public String getRegionFrance() {
-        return regionFrance;
-    }
-
+    /**
+     * Получение адреса региона
+     * @return Адрес региона
+     */
     @Override
-    public String addressRussia() {
-        return super.addressRussia() + ", " + regionRussia;
-    }
-
-    @Override
-    public String addressUsa() {
-        return super.addressUsa() + ", " + regionUsa;
-    }
-
-    @Override
-    public String addressFrance() {
-        return super.addressFrance() + ", " + regionFrance;
+    public String getAddress(){
+        return super.getAddress() + ", " + region;
     }
 }

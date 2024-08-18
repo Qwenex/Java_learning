@@ -5,31 +5,21 @@ package org.example.address;
  */
 public class Country {
 
-    private final String countryRussia = "Russia";
-    private final String countryUsa = "USA";
-    private final String countryFrance = "France";
+    private final String country;
 
-    public String getCountryRussia() {
-        return countryRussia;
+    public String getCountry() {
+        return country;
     }
 
-    public String getCountryUsa() {
-        return countryUsa;
+    public Country(String nameCountry){
+        this.country = nameCountry;
     }
 
-    public String getCountryFrance() {
-        return countryFrance;
-    }
-
-    public String addressRussia (){
-        return countryRussia;
-    }
-
-    public String addressUsa (){
-        return countryUsa;
-    }
-
-    public String addressFrance (){
-        return countryFrance;
+    /**
+     * Получение адреса страны
+     * @return Адрес страны
+     */
+    public String getAddress(){
+        return country;
     }
 }

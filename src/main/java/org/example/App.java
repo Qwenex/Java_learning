@@ -27,14 +27,20 @@ public class App {
             logger.info("Площадь фигуры {}, равна {}", shapes[i].getName(), shapes[i].squareShape());
         }
 
+        logger.info("");
+
         // Задание 2* Address
 
-        Country address = new Street();
-        City city = new City();
-        logger.info(city.getCityFrance());
-        logger.info(address.addressRussia());
-        logger.info(address.addressUsa());
-        logger.info(address.addressFrance());
+        Country[] address = {
+                new Street("Russia", "Moscow region", "Moscow", "Lenina st."),
+                new Country("Germany"),
+                new City("France", "Region Ile-de-France", "Paris"),
+                new Region("Russia","Republic of Mordovia"),
+                new Street("USA", "District of Columbia", "Washington", "Pl. Jacques Rueff")
+        };
 
+        for (int i = 0; i < address.length; i++) {
+            logger.info(address[i].getAddress());
+        }
     }
 }

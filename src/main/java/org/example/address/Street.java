@@ -3,36 +3,25 @@ package org.example.address;
 /**
  * Класс улицы
  */
-public class Street extends City {
+public class Street extends City{
 
-    private final String streetRussia = "Lenina st.";
-    private final String streetUsa = "Pennsylvania Avenue NW";
-    private final String streetFrance = "Pl. Jacques Rueff";
+    private final String street;
 
-    public String getStreetRussia() {
-        return streetRussia;
+    public String getStreet() {
+        return street;
     }
 
-    public String getStreetUsa() {
-        return streetUsa;
+    public Street(String nameCountry, String nameRegion, String nameCity, String street){
+        super(nameCountry, nameRegion,nameCity);
+        this.street = street;
     }
 
-    public String getStreetFrance() {
-        return streetFrance;
-    }
-
+    /**
+     * Получение адреса улицы
+     * @return Адрес улицы
+     */
     @Override
-    public String addressRussia() {
-        return super.addressRussia() + ", "+ streetRussia;
-    }
-
-    @Override
-    public String addressUsa() {
-        return super.addressUsa() + ", "+ streetUsa;
-    }
-
-    @Override
-    public String addressFrance() {
-        return super.addressFrance() + ", "+ streetFrance;
+    public String getAddress(){
+        return super.getAddress() + ", " + street;
     }
 }
