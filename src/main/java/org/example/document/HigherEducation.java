@@ -5,5 +5,5 @@ package org.example.document;
  */
 public interface HigherEducation {
 
-    public String getDocumentHigherEducation();
+   Document getDocumentHigherEducation();
 }

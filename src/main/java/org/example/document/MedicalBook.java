@@ -5,5 +5,5 @@ package org.example.document;
  */
 public interface MedicalBook {
 
-    public String getDocumentMedicalBook();
+    Document getDocumentMedicalBook();
 }

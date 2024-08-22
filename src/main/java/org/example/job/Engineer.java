@@ -1,5 +1,6 @@
 package org.example.job;
 
+import org.example.document.Document;
 import org.example.document.HigherEducation;
 
 /**
@@ -7,13 +8,24 @@ import org.example.document.HigherEducation;
  */
 public class Engineer extends Job implements HigherEducation {
 
-    @Override
-    public String getDocumentHigherEducation() {
-        return document.getDocumentHigherEducation();
+    private final Document higherEducationDocument;
+
+    public Engineer(Document higherEducationDocument) {
+        this.higherEducationDocument = higherEducationDocument;
     }
 
     @Override
-    public String getJob() {
-        return "работает инженером";
+    public Document getDocumentHigherEducation() {
+        return higherEducationDocument;
+    }
+
+    @Override
+    public String getNameJob() {
+        return "Инженер";
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s. Документы: {%s}",super.toString(), higherEducationDocument);
     }
 }

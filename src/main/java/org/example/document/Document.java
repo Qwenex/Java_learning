@@ -1,28 +1,39 @@
 package org.example.document;
 
 import java.time.LocalDate;
-import java.util.Random;
 
-/**
- * Генирация рандомного документа высшего образования и медецинской книжки.
- */
 public class Document {
 
-    public String getDocumentHigherEducation() {
-        Random rnd = new Random();
-        Integer rndNumberDocument = rnd.nextInt(9999);
-        Integer rndSerialDocument = rnd.nextInt(999999);
-        // Рандомная дата от 01.01.1970 до 31.12.2024
-        LocalDate rndDate = LocalDate.ofEpochDay(rnd.nextInt(20088));
-        return String.format("Высшее образование. номер %s, серия %s, дата получения %s.", rndNumberDocument, rndSerialDocument, rndDate);
+    private final String name;
+    private final String number;
+    private final String serial;
+    private final LocalDate date;
+
+    public Document(String name, String number, String serial, LocalDate date) {
+        this.name = name;
+        this.number = number;
+        this.serial = serial;
+        this.date = date;
     }
 
-    public String getDocumentMedicalBook() {
-        Random rnd = new Random();
-        Integer rndNumberDocument = rnd.nextInt(9999);
-        Integer rndSerialDocument = rnd.nextInt(999999);
-        // Рандомная дата от 01.01.1970 до 31.12.2024
-        LocalDate rndDate = LocalDate.ofEpochDay(rnd.nextInt(20088));
-        return String.format("Медицинская книжка. номер %s, серия %s, дата получения %s.", rndNumberDocument, rndSerialDocument, rndDate);
+    public String getName() {
+        return name;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s. Номер: %s, Серия: %s, Дата: %s", name, number, serial, date);
     }
 }

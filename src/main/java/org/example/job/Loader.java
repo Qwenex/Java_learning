@@ -6,7 +6,7 @@ package org.example.job;
 public class Loader extends Job{
 
     @Override
-    public String getJob() {
-        return "работает грузчиком";
+    public String getNameJob() {
+        return "Грузчик";
     }
 }
