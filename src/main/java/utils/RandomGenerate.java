@@ -64,8 +64,4 @@ public class RandomGenerate {
         Random rnd = new Random();
         return rnd.nextInt(65 - 18) + 18;
     }
-
-
-
-
 }

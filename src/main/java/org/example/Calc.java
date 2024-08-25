@@ -12,7 +12,7 @@ public class Calc {
      * @param b Второе число
      * @return Ответ
      */
-    public static Double plus(Double a, Double b){
+    public static Double plus(Double a, Double b) {
         return a + b;
     }
 
@@ -22,17 +22,18 @@ public class Calc {
      * @param b Второе число
      * @return Ответ
      */
-    public static Double minus(Double a, Double b){
+    public static Double minus(Double a, Double b) {
         return a - b;
     }
 
     /**
      * Умножение
+     *
      * @param a Первое число
      * @param b Второе число
      * @return Ответ
      */
-    public static Double multiplication(Double a, Double b){
+    public static Double multiplication(Double a, Double b) {
         return a * b;
     }
 
@@ -44,9 +45,9 @@ public class Calc {
      */
     public static Double division(Double a, Double b) {
         if (b.equals(0.0)) {
-           throw new DivisionByZero();
+            throw new DivisionByZero();
         }
-            return a / b;
+        return a / b;
     }
 
     /**
@@ -54,7 +55,7 @@ public class Calc {
      * @param a Число
      * @return Ответ
      */
-    public static Double sqr(Double a){
+    public static Double sqr(Double a) {
         return a * a;
     }
 }
