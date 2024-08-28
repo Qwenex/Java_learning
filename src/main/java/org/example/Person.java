@@ -9,9 +9,9 @@ import java.util.Objects;
 
 public class Person {
 
-    private final String fio;
-    private final LocalDate birthDay;
-    private final String birthPlace;
+    private String fio;
+    private LocalDate birthDay;
+    private String birthPlace;
     private String sex;
     private String citizenship;
     private Integer height;
@@ -59,6 +59,18 @@ public class Person {
 
     public String getHairColor() {
         return hairColor;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    public void setBirthDay(LocalDate birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public void setBirthPlace(String birthPlace) {
+        this.birthPlace = birthPlace;
     }
 
     public void setSex(String sex) {
@@ -130,7 +142,7 @@ public class Person {
             while (true) {
                 int i = strReader.read();
                 hash += i;
-                if (i == -1 ) {
+                if (i == -1) {
                     break;
                 }
             }
@@ -145,8 +157,11 @@ public class Person {
 
     @Override
     public boolean equals(Object obj) {
-        if (hashCode() != obj.hashCode()) {
+        if (obj == null) {
             return false;
+        }
+        if (obj == this) {
+            return true;
         }
         if (obj instanceof Person) {
             Person anotherPerson = (Person) obj;
