@@ -28,7 +28,7 @@ public class App
         shops.add(new Shop("Соси сосиску", new SausageProduct()));
         shops.add(new Shop("Мышеловочка", new CheeseProduct()));
 
-    logger.info(shops.toString());
+        logger.info(shops.toString());
 
         logger.info("\n\n Задание 2. Паттерн State");
         TaskState taskState =
