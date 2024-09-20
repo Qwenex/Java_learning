@@ -3,12 +3,12 @@ package org.example.facadePattern.complexSoup;
 /**
  * Вода для супа
  */
-public class WaterSoup {
+public class WaterSoupIngredient {
 
     private String name;
     private Double liters;
 
-    public WaterSoup(String name, Double liters) {
+    public WaterSoupIngredient(String name, Double liters) {
         this.name = name;
         this.liters = liters;
     }
@@ -29,7 +29,8 @@ public class WaterSoup {
         this.liters = liters;
     }
 
-    public void boilWater(Integer time) {}
+    public void boilWater(Integer time) {
+    }
 
     @Override
     public String toString() {

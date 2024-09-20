@@ -3,7 +3,7 @@ package org.example.proxyPattern;
 /**
  * Простой калькулятор
  */
-public class Calc implements CalcInterface{
+public class Calc implements CalcInterface {
     /**
      * Сложение
      * @param a Первое число

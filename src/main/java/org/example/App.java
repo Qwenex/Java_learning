@@ -24,7 +24,7 @@ public class App {
 
         CalcInterface calc = new Calc();
         LocalDate date = LocalDate.now();
-        date = LocalDate.of(2024,4,1); // Симуляция 1-го апреля, вместо текущей даты
+        date = LocalDate.of(2024, 4, 1); // Симуляция 1-го апреля, вместо текущей даты
         if (date.getMonthValue() == 4 && date.getDayOfMonth() == 1) {
             calc = new CalcJoker();
         }
@@ -42,7 +42,7 @@ public class App {
 
         ElectronicStore elcStoreKettle = new ElectronicStore("Чайник Phillips T1000", 15, 3250);
         ElectronicStore elcStoreSmartphone = new ElectronicStore("Смартфон Google pixel 7 pro", 10, 38600);
-        HardwareStore hWStoreShovel = new HardwareStore("Лопата строительная",10,300);
+        HardwareStore hWStoreShovel = new HardwareStore("Лопата строительная", 10, 300);
         AutoStore autoStoreNiva = new AutoStore("Нива Legend", 3, 920000);
 
         elcStoreKettle.subscribe(phoneSmsSubscriber);

@@ -1,14 +1,14 @@
 package org.example.facadePattern.complexSoup;
 
 /**
- * Макароны для супа
+ * Специи для супа
  */
-public class PastaSoup {
+public class SpicesSoupIngredient {
 
     private String name;
     private Integer value;
 
-    public PastaSoup(String name, Integer value) {
+    public SpicesSoupIngredient(String name, Integer value) {
         this.name = name;
         this.value = value;
     }
@@ -29,10 +29,11 @@ public class PastaSoup {
         this.value = value;
     }
 
-    public void cookPasta(Integer time) {}
+    public void addSpices() {
+    }
 
     @Override
     public String toString() {
-        return String.format("\n Макароны: %s (%s)", name, value);
+        return String.format("\n Спция %s (%s)", name, value);
     }
 }
