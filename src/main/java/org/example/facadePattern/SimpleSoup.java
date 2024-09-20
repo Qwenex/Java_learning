@@ -9,53 +9,53 @@ import java.util.List;
  * Класс-фасад для complexSoup (Имитация создания супа)
  */
 public class SimpleSoup {
-    private WaterSoupIngredient waterSoup;
-    private PotatoSoupIngredient potatoSoup;
+    private WaterSoupIngredient waterSoupIngredient;
+    private PotatoSoupIngredient potatoSoupIngredient;
     private CarrotSoupIngredient carrotSoupIngredient;
     private ChickenSoupIngredient chickenSoupIngredient;
     private PastaSoupIngredient pastaSoupIngredient;
-    private SpicesSoupIngredient spicesSoupSalt;
-    private SpicesSoupIngredient spicesSoupPepper;
+    private SpicesSoupIngredient spicesSoupIngredientSalt;
+    private SpicesSoupIngredient spicesSoupIngredientPepper;
 
     public String cookSimpleSoup() {
-        waterSoup = new WaterSoupIngredient("Фильтрованная", 2.5);
-        potatoSoup = new PotatoSoupIngredient("Крупный", 2);
+        waterSoupIngredient = new WaterSoupIngredient("Фильтрованная", 2.5);
+        potatoSoupIngredient = new PotatoSoupIngredient("Крупный", 2);
         carrotSoupIngredient = new CarrotSoupIngredient("Деревенская", 2);
         chickenSoupIngredient = new ChickenSoupIngredient("Вкусные дела. Сочные ножки", 2);
-        spicesSoupSalt = new SpicesSoupIngredient("Соль пищевая", 3);
-        spicesSoupPepper = new SpicesSoupIngredient("Перец черный", 2);
+        spicesSoupIngredientSalt = new SpicesSoupIngredient("Соль пищевая", 3);
+        spicesSoupIngredientPepper = new SpicesSoupIngredient("Перец черный", 2);
 
-        waterSoup.boilWater(300);
-        potatoSoup.cutPotato();
-        potatoSoup.cookPotato(200);
+        waterSoupIngredient.boilWater(300);
+        potatoSoupIngredient.cutPotato();
+        potatoSoupIngredient.cookPotato(200);
         carrotSoupIngredient.cutCarrot();
         carrotSoupIngredient.cookCarrot(200);
         chickenSoupIngredient.cutChicken();
         chickenSoupIngredient.cookChicken(400);
 
         List<Object> simpleSoup = new ArrayList<>();
-        simpleSoup.add(waterSoup);
-        simpleSoup.add(potatoSoup);
+        simpleSoup.add(waterSoupIngredient);
+        simpleSoup.add(potatoSoupIngredient);
         simpleSoup.add(carrotSoupIngredient);
         simpleSoup.add(chickenSoupIngredient);
-        simpleSoup.add(spicesSoupSalt);
-        simpleSoup.add(spicesSoupPepper);
+        simpleSoup.add(spicesSoupIngredientSalt);
+        simpleSoup.add(spicesSoupIngredientPepper);
 
         return String.format("Cуп готов! Приятного аппетита! Рецепт: %s", simpleSoup);
     }
 
     public String cookSimplePastaSoup() {
-        waterSoup = new WaterSoupIngredient("Фильтрованная очищенная", 3.0);
-        potatoSoup = new PotatoSoupIngredient("Средняя деревенская", 1);
+        waterSoupIngredient = new WaterSoupIngredient("Фильтрованная очищенная", 3.0);
+        potatoSoupIngredient = new PotatoSoupIngredient("Средняя деревенская", 1);
         carrotSoupIngredient = new CarrotSoupIngredient("Деревенская", 1);
         chickenSoupIngredient = new ChickenSoupIngredient("Вкусные дела. Большие грудки", 2);
         pastaSoupIngredient = new PastaSoupIngredient("Спагетти", 1);
-        spicesSoupSalt = new SpicesSoupIngredient("Соль", 2);
-        spicesSoupPepper = new SpicesSoupIngredient("Перец", 3);
+        spicesSoupIngredientSalt = new SpicesSoupIngredient("Соль", 2);
+        spicesSoupIngredientPepper = new SpicesSoupIngredient("Перец", 3);
 
-        waterSoup.boilWater(200);
-        potatoSoup.cutPotato();
-        potatoSoup.cookPotato(150);
+        waterSoupIngredient.boilWater(200);
+        potatoSoupIngredient.cutPotato();
+        potatoSoupIngredient.cookPotato(150);
         carrotSoupIngredient.cutCarrot();
         carrotSoupIngredient.cookCarrot(150);
         chickenSoupIngredient.cutChicken();
@@ -63,15 +63,14 @@ public class SimpleSoup {
         pastaSoupIngredient.cookPasta(200);
 
         List<Object> simplePastaSoup = new ArrayList<>();
-        simplePastaSoup.add(waterSoup);
-        simplePastaSoup.add(potatoSoup);
+        simplePastaSoup.add(waterSoupIngredient);
+        simplePastaSoup.add(potatoSoupIngredient);
         simplePastaSoup.add(carrotSoupIngredient);
         simplePastaSoup.add(chickenSoupIngredient);
         simplePastaSoup.add(pastaSoupIngredient);
-        simplePastaSoup.add(spicesSoupSalt);
-        simplePastaSoup.add(spicesSoupPepper);
+        simplePastaSoup.add(spicesSoupIngredientSalt);
+        simplePastaSoup.add(spicesSoupIngredientPepper);
 
         return String.format("Cуп-лапша готов! Приятного аппетита! Рецепт: %s", simplePastaSoup);
     }
-
 }
