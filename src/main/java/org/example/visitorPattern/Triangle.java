@@ -65,7 +65,7 @@ public class Triangle {
         // S= 1/2*|(x2-x1)(y3-y1)-(x3-x1)(y2-y1)|
         return 0.5 * Math.abs(
                 (dotB.getX() - dotA.getX()) * (dotC.getY() - dotA.getY())
-                        - (dotC.getX() - dotA.getX()) * (dotB.getY()) - dotA.getY());
+                        - (dotC.getX() - dotA.getX()) * (dotB.getY() - dotA.getY()));
     }
 
     /**
