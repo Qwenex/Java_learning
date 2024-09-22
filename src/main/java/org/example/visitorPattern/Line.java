@@ -12,6 +12,9 @@ public class Line {
     private final RenderVisitor renderVisitor;
 
     public Line(Dot dotA, Dot dotB) {
+        if (dotA.equals(dotB)) {
+            throw new RuntimeException("Отрезок с заданными вершинами не может существовать");
+        }
         this.dotA = dotA;
         this.dotB = dotB;
         renderVisitor = new RenderVisitor();
@@ -55,7 +58,8 @@ public class Line {
         if (this == o) return true;
         if (!(o instanceof Line)) return false;
         Line line = (Line) o;
-        return Objects.equals(dotA, line.dotA) && Objects.equals(dotB, line.dotB);
+        return Objects.equals(dotA, line.dotA) && Objects.equals(dotB, line.dotB)
+                || Objects.equals(dotA, line.dotB) && Objects.equals(dotB, line.dotA);
     }
 
     @Override
