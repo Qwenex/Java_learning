@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -17,6 +18,12 @@ public class CalcTest {
         };
     }
 
+    @Epic(value = "Основные функции калькулятора")
+    @Feature(value = "Простые операции калькулятора")
+    @Story(value = "Сложение двух чисел")
+    @Step(value = "Сложение")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description(value = "Ввод двух чисел. На выходе должно быть число, являющееся суммой этих чисел")
     @Test(description = "Сложение", dataProvider = "plusDataProvider")
     public void plusTest(Double a, Double b, Double answer) {
         Double plusActual = Calc.plus(a, b);
@@ -35,6 +42,12 @@ public class CalcTest {
         };
     }
 
+    @Epic(value = "Основные функции калькулятора")
+    @Feature(value = "Простые операции калькулятора")
+    @Story(value = "Вычетание двух чисел")
+    @Step(value = "Вычетание")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description(value = "Ввод двух чисел. На выходе должно быть число, являющееся вычитанием второо числа из первого")
     @Test(description = "Вычетание", dataProvider = "minusDataProvider")
     public void minusTest(Double a, Double b, Double answer) {
         Double minusActual = Calc.minus(a, b);
@@ -53,6 +66,12 @@ public class CalcTest {
         };
     }
 
+    @Epic(value = "Основные функции калькулятора")
+    @Feature(value = "Простые операции калькулятора")
+    @Story(value = "Умножение чисел")
+    @Step(value = "Умножение")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description(value = "Ввод двух чисел. На выходе должно быть число, являющееся Умножение этих чисел")
     @Test(description = "Умножение", dataProvider = "multiplicationDataProvider")
     public void multiplicationTest(Double a, Double b, Double answer) {
         Double multiplicationActual = Calc.multiplication(a, b);
@@ -71,6 +90,12 @@ public class CalcTest {
         };
     }
 
+    @Epic(value = "Основные функции калькулятора")
+    @Feature(value = "Простые операции калькулятора")
+    @Story(value = "Деление чисел")
+    @Step(value = "Деление")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description(value = "Ввод двух чисел. На выходе должно быть число, являющееся делением первого числа на второе")
     @Test(description = "Деление", dataProvider = "divisionDataProvider")
     public void divisionTest(Double a, Double b, Double answer) {
         Double divisionActual = Calc.division(a, b);
@@ -78,7 +103,14 @@ public class CalcTest {
         Assert.assertEquals(divisionActual, answer, "Результат функции \"Деление\" отличается от ожидаемого");
     }
 
-    @Test(description = "При делении на ноль должна выпадать ошибка RuntimeException", expectedExceptions = ArithmeticException.class)
+    @Epic(value = "Основные функции калькулятора")
+    @Feature(value = "Простые операции калькулятора")
+    @Story(value = "Деление числа на ноль")
+    @Step(value = "Деление")
+    @Severity(SeverityLevel.NORMAL)
+    @Description(value = "При делении на ноль должна выпадать ошибка RuntimeException")
+    @Test(description = "Деление на ноль",
+            expectedExceptions = ArithmeticException.class)
     public void divisionByZeroTest() {
         Calc.division(6.0, 0.0);
     }
@@ -93,6 +125,12 @@ public class CalcTest {
         };
     }
 
+    @Epic(value = "Основные функции калькулятора")
+    @Feature(value = "Простые операции калькулятора")
+    @Story(value = "Возведение числа в квадрат")
+    @Step(value = "Возведение в степень")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description(value = "Ввод одного числа. На выходе должно быть число, возведенное в квадрат ")
     @Test(description = "Возведение в квадрат", dataProvider = "sqrDataProvider")
     public void sqrTest(Double a, Double answer) {
         Double sqrActual = Calc.sqr(a);

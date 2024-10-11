@@ -6,6 +6,8 @@
         <classes>
             <class name="org.example.CalcTest"/>
             <class name="org.example.QuadraticEquationTest"/>
+            <class name="org.example.AuthorizationTest"/>
+            <class name="org.example.ProgramVersionTest"/>
         </classes>
     </test>
 </suite>
