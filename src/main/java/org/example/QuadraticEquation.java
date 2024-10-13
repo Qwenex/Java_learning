@@ -1,14 +1,20 @@
 package org.example;
 
+import io.qameta.allure.Step;
+
+/**
+ * Квадратное уравнение
+ */
 public class QuadraticEquation {
 
     /**
-     * Квадратное уравнение ax^2 + bx + c = 0
+     * Решение квадратного уравнения ax^2 + bx + c = 0
      * @param a Число a
      * @param b Число b
      * @param c Число c
      * @return Корни уровнения
      */
+    @Step(value = "Решение квадратного уравнения")
     public static Root solve(int a, int b, int c) {
         double d = (Math.pow(b, 2) - 4 * a * c);
         double x1 = ((-b + Math.sqrt(d)) / 2 * a);

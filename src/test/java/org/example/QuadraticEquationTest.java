@@ -20,7 +20,6 @@ public class QuadraticEquationTest {
     @Epic(value = "Основные функции квадратного уравнения")
     @Feature(value = "Стандартное квадратное уравнение")
     @Story(value = "Решение квадратного уравнения")
-    @Step(value = "Решение")
     @Severity(SeverityLevel.BLOCKER)
     @Description(value = "Решение квадратного уравнения")
     @Test(description = "Решение квадратного уравнения", dataProvider = "rootDataProvider")

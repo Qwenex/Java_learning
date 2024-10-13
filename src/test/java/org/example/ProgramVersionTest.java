@@ -27,7 +27,6 @@ public class ProgramVersionTest {
     @Epic(value = "Программы и плагины")
     @Feature(value = "Список программ и плагинов")
     @Story(value = "Проверка версий программ")
-    @Step(value = "Проверка версии")
     @Severity(SeverityLevel.NORMAL)
     @Description(value = "Проверка версии программы из файла \"properties\"")
     @Test(description = "Проверка версии программы", dataProvider = "ProgramVersionDataProvider")
