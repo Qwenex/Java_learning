@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="AllSuite" parallel="classes" thread-count="2">
+    <test name="AllTest">
+        <classes>
+            <class name="org.example.CalcTest"/>
+            <class name="org.example.QuadraticEquationTest"/>
+            <class name="org.example.AuthorizationTest"/>
+            <class name="org.example.ProgramVersionTest"/>
+        </classes>
+    </test>
+</suite>
