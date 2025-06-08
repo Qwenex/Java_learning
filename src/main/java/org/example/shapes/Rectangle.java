@@ -5,7 +5,7 @@ package org.example.shapes;
  */
 public class Rectangle extends Square {
 
-    public Double b;
+    protected Double b;
 
     /**
      * @param a Сторона прямоугольника a
@@ -13,6 +13,14 @@ public class Rectangle extends Square {
      */
     public Rectangle(Double a, Double b) {
         super(a,"прямоугольник");
+        this.b = b;
+    }
+
+    public Double getB() {
+        return b;
+    }
+
+    public void setB(Double b) {
         this.b = b;
     }
 

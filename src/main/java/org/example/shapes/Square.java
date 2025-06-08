@@ -5,7 +5,7 @@ package org.example.shapes;
  */
 public class Square extends Shape {
 
-    public Double a;
+    protected Double a;
 
     /**
      * @param a Сторона квадрата a
@@ -17,6 +17,14 @@ public class Square extends Shape {
 
     protected Square(Double a, String name) {
         super(name);
+        this.a = a;
+    }
+
+    public Double getA() {
+        return a;
+    }
+
+    public void setA(Double a) {
         this.a = a;
     }
 

@@ -5,13 +5,21 @@ package org.example.shapes;
  */
 public class Circle extends Shape {
 
-    public Double r;
+    protected Double r;
 
     /**
      * @param r Радиус круга
      */
     public Circle(Double r) {
         super("круг");
+        this.r = r;
+    }
+
+    public Double getR() {
+        return r;
+    }
+
+    public void setR(Double r) {
         this.r = r;
     }
 

@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.address.Country;
-import org.example.address.City;
-import org.example.address.Region;
-import org.example.address.Street;
+import org.example.address.*;
 import org.example.shapes.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +11,7 @@ public class App {
     public static void main(String[] args) {
 
         // Задание 1 Shapes
+        logger.info("\n\n Задание 1 Фигуры");
 
         Shape[] shapes = {
                 new Square(2.2),
@@ -27,9 +25,8 @@ public class App {
             logger.info("Площадь фигуры {}, равна {}", shapes[i].getName(), shapes[i].squareShape());
         }
 
-        logger.info("");
-
         // Задание 2* Address
+        logger.info("\n\n Задание 2 Адрес");
 
         Country[] address = {
                 new Street("Russia", "Moscow region", "Moscow", "Lenina st."),

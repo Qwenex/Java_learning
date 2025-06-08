@@ -3,17 +3,17 @@ package org.example.address;
 /**
  * Класс улицы
  */
-public class Street extends City{
+public class Street extends City {
 
     private final String street;
 
-    public String getStreet() {
-        return street;
+    public Street(String nameCountry, String nameRegion, String nameCity, String street) {
+        super(nameCountry, nameRegion, nameCity);
+        this.street = street;
     }
 
-    public Street(String nameCountry, String nameRegion, String nameCity, String street){
-        super(nameCountry, nameRegion,nameCity);
-        this.street = street;
+    public String getStreet() {
+        return street;
     }
 
     /**
@@ -21,7 +21,7 @@ public class Street extends City{
      * @return Адрес улицы
      */
     @Override
-    public String getAddress(){
+    public String getAddress() {
         return super.getAddress() + ", " + street;
     }
 }

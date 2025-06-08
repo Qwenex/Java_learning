@@ -7,19 +7,19 @@ public class Country {
 
     private final String country;
 
-    public String getCountry() {
-        return country;
+    public Country(String nameCountry) {
+        this.country = nameCountry;
     }
 
-    public Country(String nameCountry){
-        this.country = nameCountry;
+    public String getCountry() {
+        return country;
     }
 
     /**
      * Получение адреса страны
      * @return Адрес страны
      */
-    public String getAddress(){
+    public String getAddress() {
         return country;
     }
 }

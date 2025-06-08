@@ -5,13 +5,23 @@ package org.example.shapes;
  */
 public class RightTriangle extends Square {
 
-    public Double a;
+    protected Double a;
 
     /**
      * @param a Сторона треугольника a
      */
     public RightTriangle(Double a) {
         super(a,"прямоугольный треугольник");
+    }
+
+    @Override
+    public Double getA() {
+        return a;
+    }
+
+    @Override
+    public void setA(Double a) {
+        this.a = a;
     }
 
     /**

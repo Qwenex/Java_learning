@@ -7,13 +7,13 @@ public class Region extends Country {
 
     private final String region;
 
-    public String getRegion() {
-        return region;
-    }
-
-    public Region(String nameCountry, String nameRegion){
+    public Region(String nameCountry, String nameRegion) {
         super(nameCountry);
         this.region = nameRegion;
+    }
+
+    public String getRegion() {
+        return region;
     }
 
     /**
@@ -21,7 +21,7 @@ public class Region extends Country {
      * @return Адрес региона
      */
     @Override
-    public String getAddress(){
+    public String getAddress() {
         return super.getAddress() + ", " + region;
     }
 }
