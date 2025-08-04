@@ -62,6 +62,6 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("\nПользователь с Id %s: %s %s. email: %s",getId(),getName(),getLast_name(),getEmail());
+        return String.format("\nПользователь с Id %s: %s %s. email: %s", getId(), getName(), getLast_name(), getEmail());
     }
 }
