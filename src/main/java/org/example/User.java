@@ -15,6 +15,11 @@ public class User {
         this.email = email;
     }
 
+    public User(Integer id, String email) {
+        Id = id;
+        this.email = email;
+    }
+
     public Integer getId() {
         return Id;
     }

@@ -5,6 +5,7 @@ import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -18,16 +19,14 @@ public class App {
      * @param <T>         Тип данных записываемый в массив
      * @return Массив запрашиваемых данных в формате ArrayList
      */
-    public static <T> ArrayList<T> getDataDB(String sql, FunctionSql<T> functionSql) throws SQLException, ClassNotFoundException {
+    public static <T> ArrayList<T> getDataDB(String sql, FunctionSql<T> functionSql) throws RuntimeException, SQLException, IOException, ClassNotFoundException {
         ArrayList<T> dataDBArray = new ArrayList<>();
-        Class.forName("org.postgresql.Driver");
-        String url = "jdbc:postgresql://localhost:5432/mydbpostgres";
-        String user = "postgres";
-        String password = "postgres";
+        ConnectToPostgresMyDB connectionPostgres = new ConnectToPostgresMyDB();
+        connectionPostgres.connect();
 
-        try (Connection connection = DriverManager.getConnection(url, user, password);
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)) {
+        try (Connection connection = DriverManager.getConnection(connectionPostgres.getUrl(), connectionPostgres.getUser(), connectionPostgres.getPassword())) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 T object = functionSql.getData(resultSet);
                 dataDBArray.add(object);
@@ -40,19 +39,18 @@ public class App {
      * Добавление новых данных через sql запрос
      * @param sql Sql запрос
      */
-    public static void setDataDB(String sql) throws SQLException, ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
-        String url = "jdbc:postgresql://localhost:5432/mydbpostgres";
-        String user = "postgres";
-        String password = "postgres";
-        try (Connection connection = DriverManager.getConnection(url, user, password);
-             Statement statement = connection.createStatement()) {
+    public static void setDataDB(String sql) throws SQLException, ClassNotFoundException, IOException {
+        ConnectToPostgresMyDB connectionPostgres = new ConnectToPostgresMyDB();
+        connectionPostgres.connect();
+
+        try (Connection connection = DriverManager.getConnection(connectionPostgres.getUrl(), connectionPostgres.getUser(), connectionPostgres.getPassword())) {
+            Statement statement = connection.createStatement();
             Integer rows = statement.executeUpdate(sql);
             logger.info("Было добавлено {} строк", rows);
         }
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
 
         logger.info("Задание 1 SQL");
         // Добавление новых данных в БД
@@ -80,8 +78,6 @@ public class App {
         ArrayList<User> idAndGmails = getDataDB("SELECT id, email FROM users WHERE email LIKE '%@gmail.com'",
                 resultSet -> new User(
                         resultSet.getInt("id"),
-                        "",
-                        "",
                         resultSet.getString("email")
                 ));
 
