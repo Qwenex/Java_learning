@@ -19,54 +19,41 @@ public class App {
      * @param <T>         Тип данных записываемый в массив
      * @return Массив запрашиваемых данных в формате ArrayList
      */
-    public static <T> ArrayList<T> getDataDB(String sql, FunctionSql<T> functionSql) throws RuntimeException, SQLException, IOException, ClassNotFoundException {
+    public static <T> ArrayList<T> getDataDB(String sql, FunctionSql<T> functionSql)
+            throws IOException, ClassNotFoundException, SQLException {
         ArrayList<T> dataDBArray = new ArrayList<>();
-        ConnectToPostgresMyDB connectionPostgres = SingletonConnectPostgresDB.getInstant();
-        connectionPostgres.connect();
-
-        try (Connection connection = DriverManager.getConnection(connectionPostgres.getUrl(), connectionPostgres.getUser(), connectionPostgres.getPassword())) {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                T object = functionSql.getData(resultSet);
-                dataDBArray.add(object);
-            }
+        ResultSet resultSet = ConnectToPostgresMyDB.sendRequest(SwitchExecute.SELECT, sql);
+        while (resultSet != null && resultSet.next()) {
+            T object = functionSql.getData(resultSet);
+            dataDBArray.add(object);
         }
         return dataDBArray;
     }
 
     /**
-     * Добавление новых данных через sql запрос
-     * @param sql Sql запрос
+     * @param sql SQL запрос
      */
-    public static void setDataDB(String sql) throws SQLException, ClassNotFoundException, IOException {
-        ConnectToPostgresMyDB connectionPostgres = SingletonConnectPostgresDB.getInstant();
-        connectionPostgres.connect();
-
-        try (Connection connection = DriverManager.getConnection(connectionPostgres.getUrl(), connectionPostgres.getUser(), connectionPostgres.getPassword())) {
-            Statement statement = connection.createStatement();
-            Integer rows = statement.executeUpdate(sql);
-            logger.info("Было добавлено {} строк", rows);
-        }
+    public static void setDataDB(String sql) throws ClassNotFoundException, IOException {
+        ConnectToPostgresMyDB.sendRequest(SwitchExecute.INSERT, sql);
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
 
         logger.info("Задание 1 SQL");
-        // Добавление новых данных в БД
+        // Добавление новых данных в Postgres DB
         ArrayList<User> newUsers = new ArrayList<>();
         newUsers.add(new User(10, "Maksim", "Volodilov", "8793450123@gmail.com"));
         newUsers.add(new User(11, "Andrey", "Svetohodec", "Andrushka07@gmail.com"));
         newUsers.add(new User(12, "Marina", "Valentinovna", "sexygril2001@mail.ru"));
         newUsers.add(new User(13, "Yana", "Reznova", "yanchik1999@gmail.com"));
 
-        for (int i = 0; i < newUsers.size(); i++) {
+        for (User newUser : newUsers) {
             String sqlInsert = String.format("INSERT INTO users (id, first_name, last_name, email) VALUES (%s, '%s', '%s','%s')",
-                    newUsers.get(i).getId(), newUsers.get(i).getName(), newUsers.get(i).getLast_name(), newUsers.get(i).getEmail());
+                    newUser.getId(), newUser.getName(), newUser.getLast_name(), newUser.getEmail());
             setDataDB(sqlInsert);
         }
 
-        // Получение данных из БД
+        // Получение данных из Postgres DB
         ArrayList<User> allUsers = getDataDB("SELECT * FROM users ORDER BY id",
                 resultSet -> new User(
                         resultSet.getInt(1),
@@ -85,25 +72,20 @@ public class App {
         logger.info(idAndGmails.toString());
 
         logger.info("Задание 2 NoSQL");
-        String urlMongo = "mongodb://localhost:27017/";
-        MongoClient mongoClient = MongoClients.create(urlMongo);
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("DatabaseMongo");
-        MongoCollection<Document> collection = mongoDatabase.getCollection("CollectionMongo");
-
-        //Добавление записей в БД Mongo
+        // Добавление записей в Mongo DB
         ArrayList<Document> documentsUsers = new ArrayList<>();
-        for (int i = 0; i <= allUsers.size(); i++) {
+        for (int i = 0; i < allUsers.size(); i++) {
             documentsUsers.add(new Document()
                     .append("_id", allUsers.get(i).getId())
                     .append("name", allUsers.get(i).getName())
                     .append("last_name", allUsers.get(i).getLast_name())
                     .append("email", allUsers.get(i).getEmail()));
         }
-        collection.insertMany(documentsUsers);
+        ConnectToMongoMyDB.connect().insertMany(documentsUsers);
 
-        // Получение записей из БД Mongo
+        // Получение записей из Mongo DB
         ArrayList<User> usersFromMongoDB = new ArrayList<>();
-        FindIterable<Document> documents = collection.find();
+        FindIterable<Document> documents = ConnectToMongoMyDB.connect().find();
         documents.forEach(document -> usersFromMongoDB.add(
                 new User(
                         document.getInteger("_id"),
@@ -113,5 +95,6 @@ public class App {
                 )
         ));
         logger.info(usersFromMongoDB.toString());
+
     }
 }

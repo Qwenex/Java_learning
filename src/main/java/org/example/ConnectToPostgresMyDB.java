@@ -1,55 +1,44 @@
 package org.example;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.sql.*;
 import java.util.Properties;
 
 public class ConnectToPostgresMyDB {
+    private static final Logger logger = LoggerFactory.getLogger(ConnectToPostgresMyDB.class);
 
-    String url;
-    String user;
-    String password;
-
-    public void connect() throws IOException, ClassNotFoundException {
+    public static ResultSet sendRequest(SwitchExecute switchExecute, String sql) throws IOException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         Properties properties = new Properties();
+        String url;
+        String user;
+        String password;
 
-        try (InputStream input = getClass().getClassLoader()
+        try (InputStream input = ConnectToPostgresMyDB.class.getClassLoader()
                 .getResourceAsStream("authorization/authorizationPostgresMyDB.properties")) {
             if (input == null) {
                 throw new RuntimeException("Файл не найден в resources!");
             }
             properties.load(input);
-            this.url = properties.getProperty("db.url");
-            this.user = properties.getProperty("db.user");
-            this.password = properties.getProperty("db.password");
+            url = properties.getProperty("db.url");
+            user = properties.getProperty("db.user");
+            password = properties.getProperty("db.password");
+        }
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            Statement statement = connection.createStatement();
+            if (switchExecute == SwitchExecute.SELECT) {
+                return statement.executeQuery(sql);
+            } else {
+                Integer rows = statement.executeUpdate(sql);
+                logger.info("Было добавлено {} строк", rows);
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 }
