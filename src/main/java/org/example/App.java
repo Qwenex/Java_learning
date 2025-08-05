@@ -21,7 +21,7 @@ public class App {
      */
     public static <T> ArrayList<T> getDataDB(String sql, FunctionSql<T> functionSql) throws RuntimeException, SQLException, IOException, ClassNotFoundException {
         ArrayList<T> dataDBArray = new ArrayList<>();
-        ConnectToPostgresMyDB connectionPostgres = new ConnectToPostgresMyDB();
+        ConnectToPostgresMyDB connectionPostgres = SingletonConnectPostgresDB.getInstant();
         connectionPostgres.connect();
 
         try (Connection connection = DriverManager.getConnection(connectionPostgres.getUrl(), connectionPostgres.getUser(), connectionPostgres.getPassword())) {
@@ -40,7 +40,7 @@ public class App {
      * @param sql Sql запрос
      */
     public static void setDataDB(String sql) throws SQLException, ClassNotFoundException, IOException {
-        ConnectToPostgresMyDB connectionPostgres = new ConnectToPostgresMyDB();
+        ConnectToPostgresMyDB connectionPostgres = SingletonConnectPostgresDB.getInstant();
         connectionPostgres.connect();
 
         try (Connection connection = DriverManager.getConnection(connectionPostgres.getUrl(), connectionPostgres.getUser(), connectionPostgres.getPassword())) {

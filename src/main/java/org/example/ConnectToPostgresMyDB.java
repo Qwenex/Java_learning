@@ -16,8 +16,11 @@ public class ConnectToPostgresMyDB {
         Class.forName("org.postgresql.Driver");
         Properties properties = new Properties();
 
-        try (InputStream input = Files.newInputStream(Paths.get(
-                "C:\\Users\\Qwenex\\IdeaProjects\\Java_learning\\src\\main\\resources\\authorization\\authorizationPostgresMyDB.properties"))) {
+        try (InputStream input = getClass().getClassLoader()
+                .getResourceAsStream("authorization/authorizationPostgresMyDB.properties")) {
+            if (input == null) {
+                throw new RuntimeException("Файл не найден в resources!");
+            }
             properties.load(input);
             this.url = properties.getProperty("db.url");
             this.user = properties.getProperty("db.user");
