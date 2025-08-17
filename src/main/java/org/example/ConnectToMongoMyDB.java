@@ -13,7 +13,7 @@ import java.util.Properties;
 public class ConnectToMongoMyDB {
     public static MongoCollection<Document> connect(){
         Properties properties = new Properties();
-        try (InputStream input = ConnectToPostgresMyDB.class.getClassLoader()
+        try (InputStream input = ConnectToMongoMyDB.class.getClassLoader()
                 .getResourceAsStream("authorization/authorizationMongoMyDB.properties")) {
             if (input == null) {
                 throw new RuntimeException("Файл не найден в resources!");
