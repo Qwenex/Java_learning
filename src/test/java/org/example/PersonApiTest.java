@@ -8,11 +8,11 @@ import java.io.File;
 
 public class PersonApiTest {
 
-    private final static String URL = "http://localhost:8093/";
-    private final static String BASE_PATH = "api/person/";
-    private final static String GET_PERSON = "get";
-    private final static String GET_ALL_PERSON = "get-all";
-    private final static String ADD_PERSON = "add";
+    private final static String URL = "http://localhost:8093";
+    private final static String BASE_PATH = "/api/person";
+    private final static String GET_PERSON = "/get";
+    private final static String GET_ALL_PERSON = "/get-all";
+    private final static String ADD_PERSON = "/add";
     private final static String JSON_SCHEMA = "src/test/resources/jsonSchema/person.json";
 
     @Test(description = "Получение всех пользователей")
