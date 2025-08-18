@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Person Schema",
+  "description": "Схема для данных пользователя",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Имя"
+    },
+    "second_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Фамилия"
+    },
+    "third_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Отчество (необязательное)"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Возраст"
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 11,
+      "description": "Номер телефона мобильного (необязательный)"
+    },
+    "nationality": {
+      "type": "string",
+      "description": "Национальность (необязательная)"
+    },
+    "id": {
+      "type": "integer",
+      "minLength": 1,
+      "description": "id"
+    }
+  },
+  "required": ["first_name", "second_name", "age", "id"]
+}
