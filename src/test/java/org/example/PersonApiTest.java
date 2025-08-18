@@ -10,16 +10,17 @@ public class PersonApiTest {
 
     private final static String URL = "http://localhost:8093/";
     private final static String BASE_PATH = "api/person/";
-    private final static String GET = "get";
-    private final static String ADD = "add";
+    private final static String GET_PERSON = "get";
+    private final static String GET_ALL_PERSON = "get-all";
+    private final static String ADD_PERSON = "add";
     private final static String JSON_SCHEMA = "src/test/resources/jsonSchema/person.json";
 
-    @Test
-    public void getALL() {
+    @Test(description = "Получение всех пользователей")
+    public void getAllUsers() {
         RestAssured
                 .given()
                 .when()
-                    .get(URL + BASE_PATH + GET + "-all")
+                    .get(URL + BASE_PATH + GET_ALL_PERSON)
                 .then()
                     .statusCode(200)
                     .extract()
@@ -28,13 +29,13 @@ public class PersonApiTest {
                     .print();
     }
 
-    @Test
-    public void getFirst() {
+    @Test(description = "Проверка первого пользователя под соответсвие JsonSchema")
+    public void checkFirstUser() {
         RestAssured
                 .given()
                     .queryParam("id", 1)
                 .when()
-                    .get(URL + BASE_PATH + GET)
+                    .get(URL + BASE_PATH + GET_PERSON)
                 .then()
                     .statusCode(200)
                     .assertThat()
@@ -45,22 +46,22 @@ public class PersonApiTest {
                     .print();
     }
 
-    @Test
-    public void add() {
+    @Test(description = "Добавление нового пользователя")
+    public void addNewUser() {
         RestAssured
                 .given()
                     .contentType("application/json")
-                    .body("{\n" +
-                        "\"first_name\": \"Ассур\",\n" +
-                        "\"second_name\": \"Бодивич\",\n" +
-                        "\"third_name\": \"Тестовян\",\n" +
-                        "\"age\": \"56\",\n" +
-                        "\"phone\": \"8 921 123 45 67\",\n" +
-                        "\"nationality\": \"Армянин\"\n" +
-                        "}")
+                    .body("{\"first_name\": \"Ассур\"," +
+                            "\"second_name\": \"Бодивич\"," +
+                            "\"third_name\": \"Тестовян\"," +
+                            "\"age\": \"56\"," +
+                            "\"phone\": \"8 921 123 45 67\"," +
+                            "\"nationality\": \"Армянин\"}"
+                    )
                 .when()
-                    .post(URL + BASE_PATH + ADD)
+                    .post(URL + BASE_PATH + ADD_PERSON)
                 .then()
                     .statusCode(200);
     }
+
 }
