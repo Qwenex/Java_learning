@@ -18,8 +18,7 @@ public class PropertyConfig {
             urlProperties.load(input);
             return urlProperties.getProperty(propertyParam);
         } catch (IOException e) {
-            throw new RuntimeException("Файл userEndpoints не найден в resources!");
+            throw new RuntimeException("Файл не найден в resources!");
         }
     }
-
 }

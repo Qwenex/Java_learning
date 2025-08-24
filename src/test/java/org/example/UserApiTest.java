@@ -10,6 +10,16 @@ import static org.hamcrest.Matchers.equalTo;
 public class UserApiTest {
 
     /**
+     * Получение полного URL для User API
+     * @param endpointName Название ендпоинта
+     * @return URL
+     */
+    public String getUserUrl(String endpointName ) {
+        return PropertyConfig.getProperty("userEndpoints.properties", "userApi.url") +
+                PropertyConfig.getProperty("userEndpoints.properties", endpointName);
+    }
+
+    /**
      * Получение Bearer токена
      * @return Токен
      */
@@ -18,7 +28,7 @@ public class UserApiTest {
                 .contentType(ContentType.URLENC)
                 .body(PropertyConfig.getProperty("userAdmin.properties", "admin.formData"))
                 .when()
-                .post(PropertyConfig.getProperty("userEndpoints.properties", "auth.url"))
+                .post(getUserUrl("auth"))
                 .then()
                 .statusCode(200)
                 .extract()
@@ -33,7 +43,7 @@ public class UserApiTest {
         RestAssured.given()
                 .header("Authorization", "Bearer " + token)
                 .when()
-                .get(PropertyConfig.getProperty("userEndpoints.properties", "getMe.url"))
+                .get(getUserUrl("getMe"))
                 .then()
                 .statusCode(200)
                 .body("username", equalTo(PropertyConfig.getProperty("userAdmin.properties", "admin.username")));
@@ -45,7 +55,7 @@ public class UserApiTest {
         RestAssured.given()
                 .header("Authorization", "Bearer " + token + "123")
                 .when()
-                .get(PropertyConfig.getProperty("userEndpoints.properties", "getMe.url"))
+                .get(getUserUrl("getMe"))
                 .then()
                 .statusCode(401);
     }
@@ -56,10 +66,10 @@ public class UserApiTest {
         RestAssured.given()
                 .header("Authorization", "Bearer " + token)
                 .contentType(ContentType.URLENC)
-                .formParam("username", "user3")
-                .formParam("password", "password3")
+                .formParam("username", "user4")
+                .formParam("password", "password4")
                 .when()
-                .post(PropertyConfig.getProperty("userEndpoints.properties", "userCreate.url"))
+                .post(getUserUrl("create"))
                 .then()
                 .statusCode(200);
 
@@ -72,7 +82,7 @@ public class UserApiTest {
                 .formParam("username", "user1")
                 .formParam("password", "password1")
                 .when()
-                .post(PropertyConfig.getProperty("userEndpoints.properties", "userCreate.url"))
+                .post(getUserUrl("create"))
                 .then()
                 .statusCode(401);
 
