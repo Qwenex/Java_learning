@@ -1,4 +1,4 @@
-package org.example.mapStruct;
+package org.example.mappingTest;
 
 import java.util.Objects;
 

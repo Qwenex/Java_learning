@@ -6,15 +6,16 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
-import org.example.mapStruct.PersonIn;
-import org.example.mapStruct.PersonMapper;
-import org.example.mapStruct.PersonOut;
+
+import org.example.mappingTest.PersonIn;
+import org.example.mappingTest.PersonMapper;
+import org.example.mappingTest.PersonOut;
 import org.example.parsingTest.Book;
+import org.example.serializationTest.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,16 +28,18 @@ public class App {
 
     public static void main(String[] args) {
 
+        // Задание 1. Mapping
         logger.info("Задание 1. Mapping (mapStruct)");
 
         PersonOut personOut = new PersonOut("Иван", "Иванов", "Иванович",
                 LocalDate.of(2000, 1, 1));
         logger.info("PersonOUT: {}", personOut);
+
         PersonIn personIn = PersonMapper.INSTANCE.toPersonIn(personOut);
         logger.info("PersonIN: {}", personIn);
 
-        logger.info("Задание 2. Parsing");
-        logger.info("1) Data Binding Parsing:");
+        // Задание 2. Parsing
+        logger.info("2.1 Data Binding Parsing:");
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -50,7 +53,7 @@ public class App {
             throw new RuntimeException(e);
         }
 
-        logger.info("2) Tree model Parsing:");
+        logger.info("2.2 Tree model Parsing:");
 
         try {
             JsonNode rootNode = mapper.readTree(new File(PropertyConfig.getProperty("jsonRoot.properties", "booksList")));
@@ -61,11 +64,12 @@ public class App {
                 Integer year = bookNode.get("year").asInt();
                 logger.info("Тайтл: {}, Автор: {}, Год: {}", title, author, year);
             }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        logger.info("3) JsonPath Parsing:");
+        logger.info("2.3 JsonPath Parsing:");
 
         try {
             String jsonPath = new String(Files.readAllBytes(new File(PropertyConfig.getProperty("jsonRoot.properties", "booksList")).toPath()));
@@ -81,7 +85,7 @@ public class App {
             throw new RuntimeException(e);
         }
 
-        logger.info("4) Stream API Parsing");
+        logger.info("2.4 Stream API Parsing");
 
         JsonFactory factory = new JsonFactory();
         List<Book> books = new ArrayList<>();
@@ -129,6 +133,33 @@ public class App {
             logger.info("Количество книг: {}, {}", books.size(), books);
 
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        // Задание 3. Object serialization
+        logger.info("Задание 3 Object serialization ");
+
+        User user981378 = new User(981378, "The_Werewolf_13", "Adm1nPa55w0rd", LocalDate.of(2016, 6, 23), true);
+        logger.info("Исходный объект до сериализации: {}", user981378);
+
+        // Сериализация объекта в файл
+        try (FileOutputStream fos = new FileOutputStream("src/main/resources/user.ser");
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+
+            oos.writeObject(user981378);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Десериализация объекта из файла
+        try (FileInputStream fis = new FileInputStream("src/main/resources/user.ser");
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+
+            User restoredUser = (User) ois.readObject();
+            logger.info("Востановленный объект после десериализации: {}", restoredUser);
+
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

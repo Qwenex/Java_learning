@@ -1,4 +1,4 @@
-package org.example.mapStruct;
+package org.example.mappingTest;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
