@@ -29,7 +29,8 @@ public class App {
         // 3. Создание нового объекта
         Constructor<?> publicConstructor = carClass.getConstructor(
                 String.class, String.class, Integer.class, Integer.class, Integer.class, String.class, String.class);
-        Car reflectionCar = (Car) publicConstructor.newInstance("Toyota", "Camry", 2006, 123456, 965000, "Рефлексов Апир Джавович", "exampleMail_123@yahoo.org");
+        Car reflectionCar = (Car) publicConstructor.newInstance(
+                "Toyota", "Camry", 2006, 123456, 965000, "Рефлексов Апир Джавович", "exampleMail_123@yahoo.org");
         logger.info("3. Car с рефлексией: {}", reflectionCar);
 
         // 4. Получение методов (список)
@@ -69,7 +70,8 @@ public class App {
         Object sellerContactType = sellerContactInfo.getType();
         Object sellerContactModifiers = Modifier.toString(sellerContactInfo.getModifiers());
 
-        logger.info("8. Инфа о приватном поле: Имя: {} Тип: {}, Модификаторы: {}", sellerContactName, sellerContactType, sellerContactModifiers);
+        logger.info("8. Инфа о приватном поле: Имя: {} Тип: {}, Модификаторы: {}",
+                sellerContactName, sellerContactType, sellerContactModifiers);
 
         // 9. Вызов методов ( .invoke(null) для static методов )
         Method sellerVisitCard = carClass3.getMethod("sellerVisitCard");
@@ -86,7 +88,21 @@ public class App {
         Object fastDiscountInfoType = fastDiscount.getReturnType();
         Object fastDiscountInfoInfoModifier = Modifier.toString(fastDiscount.getModifiers());
 
-        logger.info("10. Инфа о приватном методе: Имя: {} возвращаемый тип: {}, Модификаторы: {}", fastDiscountInfoName, fastDiscountInfoType, fastDiscountInfoInfoModifier);
+        logger.info("10. Инфа о приватном методе: Имя: {} возвращаемый тип: {}, Модификаторы: {}",
+                fastDiscountInfoName, fastDiscountInfoType, fastDiscountInfoInfoModifier);
+
+        logger.info("Задание 2 Simple reflection parser");
+
+        String jsonFile = "{" +
+                "    \"title\": \"Дюна\"," +
+                "    \"author\": \"Фрэнк Герберт\"," +
+                "    \"year\": 1965," +
+                "    \"genre\": \"Фантастика\"," +
+                "    \"price\": 1470.50" +
+                "  }";
+
+        Book parseBook = (Book) MyParser.parse(jsonFile, Book.class);
+        logger.info(parseBook.toString());
 
     }
 }
