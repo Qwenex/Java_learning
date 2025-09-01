@@ -18,9 +18,8 @@ public class MyParser {
         Constructor<?> constructor = clazz.getConstructor();
         Object obj =  constructor.newInstance();
 
-        String cleanJson = json.replaceAll("[{}]", "");
-        String cleanJson2 = cleanJson.replaceAll("\\s", "");
-        String[] splitJson = cleanJson2.split(",");
+        String cleanJson = json.replaceAll("[\\s{}]", "");
+        String[] splitJson = cleanJson.split(",");
 
         for (String keyValue : splitJson) {
             String[] splitKeyValue = keyValue.split(":");
