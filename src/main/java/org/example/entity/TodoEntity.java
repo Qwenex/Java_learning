@@ -1,29 +1,38 @@
-package org.example.model;
+package org.example.entity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
-public class TodoItem {
+@Entity
+@Table(name = "todos")
+public class TodoEntity {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 100)
     private String title;
-    private String description;
-    private Boolean completed;
 
-    public TodoItem() {
+    @Column(length = 500)
+    private String description;
+
+    @Column(nullable = false)
+    private Boolean completed = false;
+
+    public TodoEntity() {
     }
 
-    public TodoItem(Integer id, String title, String description, Boolean completed) {
-        this.id = id;
+    public TodoEntity(String title, String description) {
         this.title = title;
         this.description = description;
-        this.completed = completed;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,9 +63,12 @@ public class TodoItem {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TodoItem)) return false;
-        TodoItem todoItem = (TodoItem) o;
-        return Objects.equals(id, todoItem.id) && Objects.equals(title, todoItem.title) && Objects.equals(description, todoItem.description) && Objects.equals(completed, todoItem.completed);
+        if (!(o instanceof TodoEntity)) return false;
+        TodoEntity todoEntity = (TodoEntity) o;
+        return Objects.equals(id, todoEntity.id)
+                && Objects.equals(title, todoEntity.title)
+                && Objects.equals(description, todoEntity.description)
+                && Objects.equals(completed, todoEntity.completed);
     }
 
     @Override

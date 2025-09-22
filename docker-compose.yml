@@ -1,10 +1,37 @@
-version: '3.8'
-
 services:
   app:
-    container_name: TodoList-App-Spring
+    image: app
+    container_name: TodoList-App
     ports:
-      - "8081:8080"
+      - "8080:8080"
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:17
+    container_name: TodoList-Postgres
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=todoListDB
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - TZ='GMT+3'
+      - PGTZ='GMT+3'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+        - app-network
+    restart: always
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network: {}
