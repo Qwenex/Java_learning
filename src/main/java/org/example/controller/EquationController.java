@@ -1,12 +1,12 @@
 package org.example.controller;
 
 import org.example.entity.EquationRootEntity;
+import org.example.entity.EquationSolvedEntity;
+import org.example.repository.EquationSolvedRepository;
 import org.example.service.EquationService;
 import org.example.entity.EquationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
@@ -27,12 +27,9 @@ public class EquationController {
         return modelAndView;
     }
 
-    @GetMapping
-    public EquationRootEntity solve(EquationEntity equationEntity) {
+    @PostMapping("/solve")
+    public EquationRootEntity solve(@RequestBody EquationEntity equationEntity) {
         return equationService.solve(equationEntity);
     }
-
-
-
 
 }

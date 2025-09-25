@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <encoder>
             <pattern>
-                %d{HH:mm:ss} [%t] %logger{0} %L [%highlight(%level)] - %msg%n
+                %magenta(%d{HH:mm:ss} |%t|) [%clr(%level)] %cyan(%logger{0} {%L}) - %msg%n
             </pattern>
-            <charset>utf8</charset>
         </encoder>
     </appender>
 
-    <EquationRootEntity level="INFO">
+    <root level="INFO">
         <appender-ref ref="CONSOLE" />
-    </EquationRootEntity>
+    </root>
 </configuration>

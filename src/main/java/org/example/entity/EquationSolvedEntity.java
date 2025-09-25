@@ -1,11 +1,14 @@
 package org.example.entity;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
+@Transactional
 @Table(name = "solvedEquationList")
 public class EquationSolvedEntity {
 
@@ -13,11 +16,11 @@ public class EquationSolvedEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.MERGE, targetEntity = EquationEntity.class)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = EquationEntity.class)
     @JoinColumn(name = "equation_id", nullable = false)
     private EquationEntity equationEntity;
 
-    @OneToOne(cascade = CascadeType.MERGE, targetEntity = EquationRootEntity.class)
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = EquationRootEntity.class)
     @JoinColumn(name= "roots_id")
     private EquationRootEntity equationRootEntity;
 
