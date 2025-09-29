@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Transactional
-@Table(name = "solvedEquationList")
+@Table(name = "solvedEquation")
 public class EquationSolvedEntity {
 
     @Id
@@ -21,7 +21,7 @@ public class EquationSolvedEntity {
     private EquationEntity equationEntity;
 
     @OneToOne(cascade = CascadeType.ALL, targetEntity = EquationRootEntity.class)
-    @JoinColumn(name= "roots_id")
+    @JoinColumn(name= "root_id")
     private EquationRootEntity equationRootEntity;
 
     private LocalDateTime createdAt;

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "rootList")
+@Table(name = "root")
 public class EquationRootEntity {
 
     @Id

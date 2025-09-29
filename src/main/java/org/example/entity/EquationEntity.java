@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "equationList")
+@Table(name = "equation")
 public class EquationEntity {
 
     @Id
