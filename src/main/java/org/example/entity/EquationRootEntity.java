@@ -58,9 +58,9 @@ public class EquationRootEntity {
     @Override
     public String toString() {
         if (x1 != null && x2 != null) {
-            return String.format("%s, %s", x1, x2);
+            return String.format("x₁=%.2f | x₂=%.2f", x1, x2);
         } else if (x1 != null) {
-            return String.format("Один корень: %s", x1);
+            return String.format("Один корень: x=%.2f", x1);
         } else {
             return "Корней нет";
         }

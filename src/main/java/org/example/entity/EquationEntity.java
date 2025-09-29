@@ -65,7 +65,7 @@ public class EquationEntity {
 
     @Override
     public String toString() {
-        return String.format("Уравнение: %s(x^2)%sx%s=0",
+        return String.format("%s(x^2)%sx%s=0",
                 a, b >= 0 ? "+" + b : b, c >= 0 ? "+" + c : c);
     }
 }

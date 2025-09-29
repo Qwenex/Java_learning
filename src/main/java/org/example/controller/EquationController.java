@@ -1,35 +1,39 @@
 package org.example.controller;
 
 import org.example.entity.EquationRootEntity;
-import org.example.entity.EquationSolvedEntity;
-import org.example.repository.EquationSolvedRepository;
 import org.example.service.EquationService;
 import org.example.entity.EquationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-@RestController
+import java.util.List;
+import java.util.Map;
+
+@Controller
 public class EquationController {
 
     private final EquationService equationService;
 
     @Autowired
-    public EquationController(EquationService equationService){
+    public EquationController(EquationService equationService) {
         this.equationService = equationService;
     }
 
     @GetMapping("/")
-    @ResponseBody
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("quadraticEquation");
-        return modelAndView;
+    public String index() {
+        return "quadraticEquation";
     }
 
     @PostMapping("/solve")
+    @ResponseBody
     public EquationRootEntity solve(@RequestBody EquationEntity equationEntity) {
         return equationService.solve(equationEntity);
     }
 
+    @GetMapping("/history")
+    @ResponseBody
+    public List<Map<String, Object>> getHistory() {
+        return equationService.getLastTenSolutions();
+    }
 }
