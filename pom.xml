@@ -78,6 +78,11 @@
             <artifactId>json-schema-validator</artifactId>
             <version>${rest-assured.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.59</version>
+        </dependency>
         <!-- Parsing and Mapping-->
         <dependency>
             <groupId>org.mapstruct</groupId>
