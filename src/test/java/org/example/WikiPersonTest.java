@@ -1,34 +1,27 @@
 package org.example;
-
 import org.example.pageFactory.wiki.MainPageFactory;
 import org.example.pageObject.wiki.MainPage;
 import org.example.pageObject.wiki.PersonPage;
-import org.example.selenide.wki.MainPageSelenide;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * Разные способы написания теста: {сравнения периода жизни известных личностей на Wikipedia}
  * Одинаковые тесты оставлены для няглодности работоспособности различных методов написания тестов.
- * 1.Casual Test -> 2.Page Object Model -> 3.POM + Fluent -> 4.PageFactory -> 5.Selenide
+ * 1.Casual Test -> 2.Page Object Model -> 3.POM + Fluent -> 4.PageFactory -> 5.Selenide(отдельный класс)
  */
 public class WikiPersonTest {
 
     WebDriver driver = new ChromeDriver();
-
     MainPage mainPage = new MainPage(driver);
     MainPageFactory mainPageFactory = new MainPageFactory(driver);
-    MainPageSelenide mainPageSelenide = new MainPageSelenide();
 
-    @BeforeClass
+    @BeforeMethod
     public void openPage() {
         mainPage.openPage();
     }
@@ -139,31 +132,6 @@ public class WikiPersonTest {
     public void personTest6(String name, String dateOfDeath) {
         try {
             String deathDateActual = mainPageFactory
-                    .searchInputSendKeys(name)
-                    .searchInputSubmit()
-                    .getDeathDate();
-            Assert.assertEquals(deathDateActual, dateOfDeath, "Дни смерти не совпадают: " + name);
-        } catch (NoSuchElementException e) {
-            System.out.printf("Для личности {%s} не найдено поле \"Дата смерти\"", name);
-        }
-    }
-
-    // v5 Selenide (изменений для тестов нет)
-    @Test(description = "Соотвтетствие даты рождения", dataProvider = "personNameAndBirthDate")
-    public void personTest7(String name, String dateOfBirth) {
-        String birthDateActual = mainPageSelenide
-                .openPage()
-                .searchInputSendKeys(name)
-                .searchInputSubmit()
-                .getBirthDate();
-        Assert.assertEquals(birthDateActual, dateOfBirth, "Дни рождения не совпадают: " + name);
-    }
-
-    @Test(description = "Соотвтетствие даты смерти", dataProvider = "personNameAndDeathDate")
-    public void personTest8(String name, String dateOfDeath) {
-        try {
-            String deathDateActual = mainPageSelenide
-                    .openPage()
                     .searchInputSendKeys(name)
                     .searchInputSubmit()
                     .getDeathDate();

@@ -23,7 +23,7 @@ public class MainPageSelenide {
     }
 
     public PersonPageSelenide searchInputSubmit() {
-        searchInputField.pressEnter();
+        searchInputField.pressTab().pressEnter();
         return Selenide.page(PersonPageSelenide.class);
     }
 }
