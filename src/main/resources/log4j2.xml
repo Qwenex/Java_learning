@@ -2,12 +2,12 @@
 <Configuration status="WARN">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss} %t (%logger{1}) %L [%highlight{%level}{
-            INFO=green, WARN=yellow, ERROR=red, DEBUG=cyan, TRACE=blue}] - %msg%n"/>
+            <PatternLayout pattern="%style{%d{HH:mm:ss} |%t|}{Magenta} %highlight{[%level]}{
+            INFO=green, WARN=yellow bright, ERROR=red, DEBUG=blue, TRACE=blue bright} %style{(%logger{0}) {%L}}{Cyan} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
-        <Root level="TRACE">
+        <Root level="DEBUG">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
