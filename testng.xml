@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel Suite" parallel="classes" thread-count="8">
+    <test name="Test">
+        <classes>
+            <!-- <class name="org.example.selenium.WikiPersonTest"/> -->
+            <class name="org.example.selenoid.WikiPersonSelenideTest"/>
+        </classes>
+    </test>
+</suite>

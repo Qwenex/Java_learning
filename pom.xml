@@ -53,6 +53,11 @@
             <version>${selenium.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>7.11.1</version>
+        </dependency>
+        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure-testng.version}</version>
